@@ -21,9 +21,23 @@
   </head>
   <body>
     <h1>NotesApp</h1>
+    <section class="wrapper">
 
+      <section class="material-design-hamburger">
+        <button class="material-design-hamburger__icon">
+          <span class="material-design-hamburger__layer"></span>
+        </button>
+      </section>
 
+      <!--create the burger-->
+      <section class="menu menu--off">
+        <div>Sort by</div>
+        <div> <a href="" target="_blank">finish date</a></div>
+        <div><a href="" target="_blank">create date</a></div>
+        <div><a href="" target="_blank">importance</a></div>
+      </section>
 
+    </section>
 
 
     <!-- build:js scripts/vendor.js -->
@@ -34,6 +48,7 @@
 
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
+    <script src="scripts/menu.js"></script>
     <!-- endbuild -->
   </body>
 </html>
