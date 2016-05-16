@@ -1,18 +1,18 @@
 // bower:scss
 // endbower
 
+
+@import 'colors';
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
 body {
-  background: #009688;
-}
-
-h2{
-  float:right;
+  background: $color-500;
+  font-family: Roboto, sans-serif;
+  color: #000;
 }
 
 .background--blur {
-  background: #004d40;
+  background: $color-900;
 }
 
 .menu {
@@ -183,3 +183,4 @@ h2{
   }
 }
 
+@import 'edit-dialog';
