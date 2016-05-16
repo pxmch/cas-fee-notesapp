@@ -1,0 +1,10 @@
+{
+  "name": "notes-app",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.1.1"
+  },
+  "devDependencies": {
+    "jasmine-core": "jasmine#~2.4.1"
+  }
+}
