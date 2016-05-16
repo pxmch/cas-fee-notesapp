@@ -40,6 +40,36 @@
     </section>
 
 
+    <!-- edit mask -->
+    <button id="test-button" style="position: absolute; bottom: 1rem; right: 1rem" onclick="$('.edit-dialog').toggle();">Edit (Test)</button>
+    <div class="edit-dialog">
+      <form class="edit-mask">
+        <fieldset class="edit-mask-header">
+          <button name="edit-cancel" aria-label="Cancel" class="btn-action btn-action-secondary">X</button>
+          <h2 class="edit-mask-header-title">Edit note</h2>
+          <button name="edit-submit" class="btn-action btn-action-primary">Save</button>
+        </fieldset>
+        <fieldset>
+          <label for="edit-title">Title</label>
+          <input id="edit-title" type="text" name="title">
+        </fieldset>
+        <fieldset>
+          <label for="edit-description">Description</label>
+          <textarea id="edit-description" name="description"></textarea>
+        </fieldset>
+        <fieldset>
+          <label for="edit-priority">Priority</label>
+          <input id="edit-priority" type="range" min="1" max="5" step="1" name="priority">
+        </fieldset>
+        <fieldset>
+          <label for="edit-duedate">Due date</label>
+          <input id="edit-duedate" type="date" name="duedate">
+          <button name="duetate-today" class="btn-quick-date">Today</button>
+          <button name="duetate-tomorrow" class="btn-quick-date">Tomorrow</button>
+        </fieldset>
+      </form>
+    </div>
+
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
