@@ -2,11 +2,8 @@
 body {
   background: #009688; }
 
-.wrapper {
-  height: 100%;
-  transition: all 300ms ease-in-out;
-  margin: 1em 0;
-  padding: 0; }
+h2 {
+  float: right; }
 
 .background--blur {
   background: #004d40; }
