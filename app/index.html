@@ -19,22 +19,62 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body>  
+  <body>
 
-      <section class="material-design-hamburger">
-        <button class="material-design-hamburger__icon">
-          <span class="material-design-hamburger__layer"></span>
-        </button>
+  <header class="notes-toolbar">
+    <button class="toolbar--btn toolbar--menu">
+      Menü
+    </button>
 
-      </section>
+	<span class="toolbar--title">
+		Memo App
+	</span>
 
-      <!--create the burger-->
-      <section class="menu menu--off">
-        <div>Sort by</div>
-        <div> <a href="" target="_blank">finish date</a></div>
-        <div><a href="" target="_blank">create date</a></div>
-        <div><a href="" target="_blank">importance</a></div>
-      </section>
+    <button class="toolbar--btn toolbar--new">
+      Neu
+    </button>
+  </header>
+
+  <md-content flex>
+    <md-list>
+      <md-list-item class="notes-item">
+       <!-- <button class="note&#45;&#45;btn note&#45;&#45;check">
+          checked
+        </button>-->
+        <div class="list-item-text">
+          <p>
+            note 1
+          </p>
+        </div>
+        <md-divider inset></md-divider>
+      </md-list-item>
+
+      <md-list-item class="notes-item">
+       <!-- <button class="note&#45;&#45;btn note&#45;&#45;check">
+          checked
+        </button>-->
+        <div class="list-item-text">
+          <p>
+            note 2
+          </p>
+        </div>
+        <md-divider inset></md-divider>
+      </md-list-item>
+
+      <md-list-item class="notes-item">
+        <!--<button class="note&#45;&#45;btn note&#45;&#45;check">
+          checked
+        </button>-->
+        <div class="list-item-text">
+          <p>
+            note 3
+          </p>
+        </div>
+        <md-divider inset></md-divider>
+      </md-list-item>
+
+    </md-list>
+  </md-content>
 
 
 

@@ -1,131 +1,81 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
-body {
-  background: #009688; }
+.notes-toolbar {
+  background-color: #4878A1;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px;
+  overflow: hidden; }
 
-h2 {
+.toolbar--menu {
+  position: relative;
+  float: left; }
+
+.toolbar--btn {
+  display: inline-block;
+  padding: 0;
+  text-align: center;
+  font-size: 0.75em;
+  height: 42px;
+  width: 42px;
+  border-radius: 50% !important;
+  overflow: hidden; }
+
+.note--check {
+  position: relative;
+  float: left; }
+
+.note--btn {
+  display: inline-block;
+  padding: 0;
+  text-align: center;
+  font-size: 0.75em;
+  height: 42px;
+  width: 42px;
+  border-radius: 50% !important;
+  overflow: hidden; }
+
+.toolbar--title {
+  display: block;
+  float: left;
+  line-height: 42px;
+  font-family: sans-serif;
+  margin-left: 15px;
+  font-size: 1.25em;
+  white-space: nowrap; }
+
+.example-btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  padding: 5px 15px;
+  background-color: transparent;
+  line-height: 42px;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  color: white !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0); }
+
+button {
+  background: none transparent;
+  border: 0 none;
+  color: inherit; }
+
+.example-toolbar--search, .toolbar--new {
   float: right; }
 
-.background--blur {
-  background: #004d40; }
+.list-item-text {
+  border-style: inset;
+  padding: 10px 20px;
+  margin: 10px;
+  overflow: hidden; }
 
-.menu {
-  font-size: 2em;
-  font-family: 'Roboto', sans-serif;
-  color: #333; }
-
-.menu div {
-  margin: 1em;
-  padding-bottom: 1em;
-  border-bottom: 1px solid #ccc; }
-
-.menu a {
-  text-decoration: none;
-  color: #3367d6; }
-
-.menu a:hover {
-  text-decoration: underline; }
-
-.menu div:last-child {
-  border: 0; }
-
-.menu--off {
-  position: absolute;
-  left: -50%;
-  width: 50%;
-  display: block;
-  background: #eee;
-  min-height: 600px;
-  height: 125%;
-  margin-top: 1em;
-  transition: all 300ms; }
-
-.menu--on {
-  left: 0;
-  box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.2);
-  transition: all 300ms; }
-
-.material-design-hamburger button {
-  display: block;
-  border: none;
-  background: none;
-  outline: 0; }
-
-.material-design-hamburger__icon {
-  padding: 3rem 1rem;
-  cursor: pointer; }
-
-.material-design-hamburger__layer {
-  display: block;
-  width: 100px;
-  height: 10px;
-  background: #eee;
-  position: relative;
-  animation-duration: 300ms;
-  animation-timing-function: ease-in-out; }
-
-.material-design-hamburger__layer:before, .material-design-hamburger__layer:after {
-  display: block;
-  width: inherit;
-  height: 10px;
-  position: absolute;
-  background: inherit;
-  left: 0;
-  content: '';
-  animation-duration: 300ms;
-  animation-timing-function: ease-in-out; }
-
-.material-design-hamburger__layer:before {
-  bottom: 200%; }
-
-.material-design-hamburger__layer:after {
-  top: 200%; }
-
-.material-design-hamburger__icon--to-arrow {
-  animation-name: material-design-hamburger__icon--slide;
-  animation-fill-mode: forwards; }
-
-.material-design-hamburger__icon--to-arrow:before {
-  animation-name: material-design-hamburger__icon--slide-before;
-  animation-fill-mode: forwards; }
-
-.material-design-hamburger__icon--to-arrow:after {
-  animation-name: material-design-hamburger__icon--slide-after;
-  animation-fill-mode: forwards; }
-
-.material-design-hamburger__icon--from-arrow {
-  animation-name: material-design-hamburger__icon--slide-from; }
-
-.material-design-hamburger__icon--from-arrow:before {
-  animation-name: material-design-hamburger__icon--slide-before-from; }
-
-.material-design-hamburger__icon--from-arrow:after {
-  animation-name: material-design-hamburger__icon--slide-after-from; }
-
-@keyframes material-design-hamburger__icon--slide {
-  100% {
-    transform: rotate(180deg); } }
-@keyframes material-design-hamburger__icon--slide-before {
-  100% {
-    transform: rotate(45deg);
-    margin: 3% 37%;
-    width: 75%; } }
-@keyframes material-design-hamburger__icon--slide-after {
-  100% {
-    transform: rotate(-45deg);
-    margin: 3% 37%;
-    width: 75%; } }
-@keyframes material-design-hamburger__icon--slide-from {
-  0% {
-    transform: rotate(-180deg); } }
-@keyframes material-design-hamburger__icon--slide-before-from {
-  0% {
-    transform: rotate(45deg);
-    margin: 3% 37%;
-    width: 75%; } }
-@keyframes material-design-hamburger__icon--slide-after-from {
-  0% {
-    transform: rotate(-45deg);
-    margin: 3% 37%;
-    width: 75%; } }
+.notes-item {
+  margin-left: 200px; }
 
 /*# sourceMappingURL=main.css.map */
