@@ -1,14 +1,28 @@
 // bower:scss
 // endbower
 
+
+@import 'colors';
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
+<<<<<<< HEAD
 //class="example-toolbar".
 //class="example-toolbar--btn example-toolbar--menu".
 //class="example-toolbar--title".
 //class="example-toolbar--btn example-toolbar--search"
 
 
+=======
+body {
+  background: $color-500;
+  font-family: Roboto, sans-serif;
+  color: #000;
+}
+
+.background--blur {
+  background: $color-900;
+}
+>>>>>>> 144ef2b8ab281b7451cdcdb5248d8b3adefe76fb
 
 .notes-toolbar {
   background-color: #4878A1;
@@ -97,3 +111,8 @@ button {
 .notes-item {
   margin-left: 200px;
 }
+<<<<<<< HEAD
+=======
+
+@import 'edit-dialog';
+>>>>>>> 144ef2b8ab281b7451cdcdb5248d8b3adefe76fb
