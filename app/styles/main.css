@@ -1,14 +1,100 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
+
+.edit-dialog {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  box-sizing: border-box;
+  width: 80vw;
+  height: 80vh;
+  margin-left: -40vw;
+  margin-top: -40vh;
+  overflow: scroll;
+  background-color: #FFF;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.edit-mask-header {
+  padding: 0;
+  background-color: #1976D2;
+  color: #FFF;
+  vertical-align: middle;
+}
+
+.edit-mask-header-title {
+  display: inline-block;
+  margin: 0;
+}
+
+.btn-action {
+  display: inline-block;
+  border: none;
+  color: #FFF;
+  background-color: transparent;
+}
+
+.btn-action-primary {
+  float: right;
+}
+
+.edit-mask {
+  height: 100%;
+}
+
+.edit-mask fieldset {
+  padding: 1rem;
+  margin: 0 0 1rem;
+  border: none;
+}
+
+.edit-mask label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: rgba(0, 0, 0, 0.38);
+  font-size: 0.9rem;
+}
+
+.edit-mask input,
+.edit-mask textarea {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid grey;
+  font-family: Roboto, sans-serif;
+  font-size: 1.4rem;
+}
+
+.edit-mask textarea {
+  height: 4rem;
+}
+
+.btn-quick-date {
+  border: none;
+  background-color: transparent;
+}
+
+body {
+  background: #2196F3;
+  font-family: Roboto, sans-serif;
+  color: #000;
+}
+
+.background--blur {
+  background: #0D47A1;
+}
+
 .notes-toolbar {
   background-color: #4878A1;
   color: white;
   padding: 10px 20px;
   margin: 10px;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .toolbar--menu {
   position: relative;
-  float: left; }
+  float: left;
+}
 
 .toolbar--btn {
   display: inline-block;
@@ -18,11 +104,13 @@
   height: 42px;
   width: 42px;
   border-radius: 50% !important;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .note--check {
   position: relative;
-  float: left; }
+  float: left;
+}
 
 .note--btn {
   display: inline-block;
@@ -32,7 +120,8 @@
   height: 42px;
   width: 42px;
   border-radius: 50% !important;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .toolbar--title {
   display: block;
@@ -41,7 +130,8 @@
   font-family: sans-serif;
   margin-left: 15px;
   font-size: 1.25em;
-  white-space: nowrap; }
+  white-space: nowrap;
+}
 
 .example-btn {
   position: relative;
@@ -59,23 +149,28 @@
   user-select: none;
   cursor: pointer;
   -webkit-transform: translateZ(0);
-  transform: translateZ(0); }
+  transform: translateZ(0);
+}
 
 button {
   background: none transparent;
   border: 0 none;
-  color: inherit; }
+  color: inherit;
+}
 
 .example-toolbar--search, .toolbar--new {
-  float: right; }
+  float: right;
+}
 
 .list-item-text {
   border-style: inset;
   padding: 10px 20px;
   margin: 10px;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .notes-item {
-  margin-left: 200px; }
+  margin-left: 200px;
+}
 
 /*# sourceMappingURL=main.css.map */
