@@ -23,12 +23,12 @@
 </head>
 <body>
 
-<header class="notes-toolbar">
+<header class="title-header">
   <button class="toolbar--btn toolbar--menu">
     Menü
   </button>
 
-	<span class="toolbar--title">
+	<span class="menu-title">
 		Memo App
 	</span>
 
@@ -38,20 +38,39 @@
 </header>
 
 
-<div>
+<div class="note-item">
 
   <input type="checkbox" name="note-status" value="open">
-  <span> askcjnascjnk </span>
+  <span> Note 1 </span>
   <a href="#" class="edit-toggle">
-    <i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+    <i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+</div>
+
+<div class="note-item">
+
+  <input type="checkbox" name="note-status" value="open">
+  <span> Note 1 </span>
+  <a href="#" class="edit-toggle">
+    <i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+</div>
+
+<div class="note-item">
+
+  <input type="checkbox" name="note-status" value="open">
+  <span> Note 1 </span>
+  <a href="#" class="edit-toggle">
+    <i class="fa fa-pencil" aria-hidden="true"></i></a>
+
 </div>
 
 <!-- edit mask -->
 <div class="edit-dialog">
   <form class="edit-mask">
-    <header class="edit-mask-header">
+    <header class="title-header">
       <button name="edit-cancel" aria-label="Cancel" class="btn-action btn-action-secondary edit-toggle">X</button>
-      <h2 class="edit-mask-header-title">Edit note</h2>
+      <span class="menu-title">Edit note</span>
       <button name="edit-submit" class="btn-action btn-action-primary">Save</button>
     </header>
     <fieldset>
