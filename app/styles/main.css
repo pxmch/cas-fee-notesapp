@@ -1,8 +1,8 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
-body {
+body, .note-content {
   background: #2196F3;
   font-family: Roboto, sans-serif;
-  color: #000;
+  color: #FFF;
   margin: 10px; }
 
 .background--blur {
@@ -58,9 +58,6 @@ button {
 
 .note-item {
   padding: 20px; }
-
-.example-toolbar--search, .toolbar--new {
-  float: right; }
 
 .edit-dialog {
   display: block;

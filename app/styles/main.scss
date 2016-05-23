@@ -6,10 +6,10 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
 
-body {
+body, .note-content {
   background: $color-500;
   font-family: Roboto, sans-serif;
-  color: #000;
+  color: #FFF;
   margin: 10px;
 }
 
@@ -75,9 +75,6 @@ button {
   padding: 20px;
 }
 
-.example-toolbar--search, .toolbar--new {
-  float: right;
-}
 
 @import 'edit-dialog';
 
