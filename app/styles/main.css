@@ -1,9 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 body, .note-content {
-  background: #64B5F6;
+  background: #90CAF9;
   font-family: Roboto, sans-serif;
   color: #FFF;
   margin: 10px; }
+  body.style-change, .note-content.style-change {
+    background: #60b3f6; }
 
 a {
   background-color: transparent;
@@ -54,6 +56,16 @@ a {
   font-family: sans-serif;
   margin-left: 15px;
   white-space: nowrap; }
+
+.list-sorting {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #42A5F5;
+  color: #FFF; }
 
 button {
   background: none transparent;

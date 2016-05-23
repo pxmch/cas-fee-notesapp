@@ -1,24 +1,23 @@
 // bower:scss
 // endbower
-
-
 @import 'colors';
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
-
 body, .note-content {
-  background: $color-300;
+  background: $color-200;
   font-family: Roboto, sans-serif;
   color: #FFF;
   margin: 10px;
+
+  &.style-change {
+    background: darken($color-200, 10%);
+  }
 }
 
 a {
   background-color: transparent;
   color: #FFF;
 }
-
-
 
 .title-header {
   display: flex;
@@ -36,6 +35,7 @@ a {
   position: relative;
   float: left;
 }
+
 .toolbar--btn {
   display: inline-block;
   padding: 0;
@@ -50,6 +50,7 @@ a {
   position: relative;
   float: left;
 }
+
 .note--btn {
   display: inline-block;
   padding: 0;
@@ -61,13 +62,24 @@ a {
   overflow: hidden;
 }
 
-.menu-title{
+.menu-title {
   display: block;
   float: left;
   line-height: 42px;
   font-family: sans-serif;
   margin-left: 15px;
   white-space: nowrap;
+}
+
+.list-sorting {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: $color-400;
+  color: #FFF;
 }
 
 button {
@@ -80,7 +92,6 @@ button {
 
   padding: 20px;
 }
-
 
 @import 'edit-dialog';
 
