@@ -24,17 +24,6 @@
   transition: visibility 0s linear 0s, opacity 200ms;
 }
 
-.title-header {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-between;
-  padding: 1rem;
-  background-color: $color-700;
-  color: #FFF;
-}
-
 .edit-mask-header-title {
   display: inline-block;
   margin: 0;

@@ -7,21 +7,29 @@
 
 
 body, .note-content {
-  background: $color-500;
+  background: $color-300;
   font-family: Roboto, sans-serif;
   color: #FFF;
   margin: 10px;
 }
 
-.background--blur {
-  background: $color-900;
+a {
+  background-color: transparent;
+  color: #FFF;
 }
 
+
+
 .title-header {
-  background-color: #4878A1;
-  color: white;
-  padding: 10px 20px;
-  overflow: hidden;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 1rem;
+  font-size: 1.25em;
+  background-color: $color-700;
+  color: #FFF;
 }
 
 .toolbar--menu {
@@ -32,7 +40,6 @@ body, .note-content {
   display: inline-block;
   padding: 0;
   text-align: center;
-  font-size: 0.75em;
   height: 42px;
   width: 42px;
   border-radius: 50% !important;
@@ -60,7 +67,6 @@ body, .note-content {
   line-height: 42px;
   font-family: sans-serif;
   margin-left: 15px;
-  font-size: 1.25em;
   white-space: nowrap;
 }
 

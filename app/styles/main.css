@@ -1,18 +1,24 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 body, .note-content {
-  background: #2196F3;
+  background: #64B5F6;
   font-family: Roboto, sans-serif;
   color: #FFF;
   margin: 10px; }
 
-.background--blur {
-  background: #0D47A1; }
+a {
+  background-color: transparent;
+  color: #FFF; }
 
 .title-header {
-  background-color: #4878A1;
-  color: white;
-  padding: 10px 20px;
-  overflow: hidden; }
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 1rem;
+  font-size: 1.25em;
+  background-color: #1976D2;
+  color: #FFF; }
 
 .toolbar--menu {
   position: relative;
@@ -22,7 +28,6 @@ body, .note-content {
   display: inline-block;
   padding: 0;
   text-align: center;
-  font-size: 0.75em;
   height: 42px;
   width: 42px;
   border-radius: 50% !important;
@@ -48,7 +53,6 @@ body, .note-content {
   line-height: 42px;
   font-family: sans-serif;
   margin-left: 15px;
-  font-size: 1.25em;
   white-space: nowrap; }
 
 button {
@@ -80,16 +84,6 @@ button {
   visibility: visible;
   opacity: 1;
   transition: visibility 0s linear 0s, opacity 200ms; }
-
-.title-header {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-between;
-  padding: 1rem;
-  background-color: #1976D2;
-  color: #FFF; }
 
 .edit-mask-header-title {
   display: inline-block;
