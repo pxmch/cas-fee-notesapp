@@ -3,7 +3,8 @@
   "private": true,
   "dependencies": {
     "jquery": "~2.1.1",
-    "normalize-css": "~4.1.1"
+    "normalize-css": "~4.1.1",
+    "font-awesome": "^4.6.3"
   },
   "devDependencies": {
     "jasmine-core": "jasmine#~2.4.1"

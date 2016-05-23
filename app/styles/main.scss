@@ -10,6 +10,7 @@ body {
   background: $color-500;
   font-family: Roboto, sans-serif;
   color: #000;
+  margin: 10px;
 }
 
 .background--blur {
@@ -20,7 +21,6 @@ body {
   background-color: #4878A1;
   color: white;
   padding: 10px 20px;
-  margin: 10px;
   overflow: hidden;
 }
 
@@ -91,17 +91,6 @@ button {
 
 .example-toolbar--search, .toolbar--new {
   float: right;
-}
-
-.list-item-text {
-  border-style: inset;
-  padding: 10px 20px;
-  margin: 10px;
-  overflow: hidden;
-}
-
-.notes-item {
-  margin-left: 200px;
 }
 
 @import 'edit-dialog';

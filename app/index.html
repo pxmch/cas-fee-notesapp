@@ -12,6 +12,7 @@
   <!-- build:css styles/vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="/bower_components/normalize-css/normalize.css"/>
+  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css"/>
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -36,55 +37,20 @@
   </button>
 </header>
 
-<md-content flex>
-  <md-list>
-    <md-list-item class="notes-item">
-      <!-- <button class="note&#45;&#45;btn note&#45;&#45;check">
-         checked
-       </button>-->
-      <div class="list-item-text">
-        <p>
-          note 1
-        </p>
-      </div>
-      <md-divider inset></md-divider>
-    </md-list-item>
 
-    <md-list-item class="notes-item">
-      <!-- <button class="note&#45;&#45;btn note&#45;&#45;check">
-         checked
-       </button>-->
-      <div class="list-item-text">
-        <p>
-          note 2
-        </p>
-      </div>
-      <md-divider inset></md-divider>
-    </md-list-item>
+<div>
 
-    <md-list-item class="notes-item">
-      <!--<button class="note&#45;&#45;btn note&#45;&#45;check">
-        checked
-      </button>-->
-      <div class="list-item-text">
-        <p>
-          note 3
-        </p>
-      </div>
-      <md-divider inset></md-divider>
-    </md-list-item>
-
-  </md-list>
-</md-content>
+  <input type="checkbox" name="note-status" value="open">
+  <span> askcjnascjnk </span>
+  <a href="#" class="edit-toggle">
+    <i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+</div>
 
 <!-- edit mask -->
-<button id="test-button" style="position: absolute; bottom: 1rem; right: 1rem"
-        onclick="$('.edit-dialog').toggleClass('edit-dialog-open');">Edit (Test)
-</button>
 <div class="edit-dialog">
   <form class="edit-mask">
     <header class="edit-mask-header">
-      <button name="edit-cancel" aria-label="Cancel" class="btn-action btn-action-secondary">X</button>
+      <button name="edit-cancel" aria-label="Cancel" class="btn-action btn-action-secondary edit-toggle">X</button>
       <h2 class="edit-mask-header-title">Edit note</h2>
       <button name="edit-submit" class="btn-action btn-action-primary">Save</button>
     </header>
@@ -126,7 +92,6 @@
 
 <!-- build:js scripts/main.js -->
 <script src="scripts/main.js"></script>
-<script src="scripts/menu.js"></script>
 <!-- endbuild -->
 </body>
 </html>

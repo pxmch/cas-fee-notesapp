@@ -2,7 +2,8 @@
 body {
   background: #2196F3;
   font-family: Roboto, sans-serif;
-  color: #000; }
+  color: #000;
+  margin: 10px; }
 
 .background--blur {
   background: #0D47A1; }
@@ -11,7 +12,6 @@ body {
   background-color: #4878A1;
   color: white;
   padding: 10px 20px;
-  margin: 10px;
   overflow: hidden; }
 
 .toolbar--menu {
@@ -76,15 +76,6 @@ button {
 
 .example-toolbar--search, .toolbar--new {
   float: right; }
-
-.list-item-text {
-  border-style: inset;
-  padding: 10px 20px;
-  margin: 10px;
-  overflow: hidden; }
-
-.notes-item {
-  margin-left: 200px; }
 
 .edit-dialog {
   display: block;
