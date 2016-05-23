@@ -8,5 +8,13 @@
   },
   "devDependencies": {
     "jasmine-core": "jasmine#~2.4.1"
+  },
+  "overrides": {
+    "font-awesome": {
+      "main": [
+        "./scss/font-awesome.scss",
+        "./fonts/*"
+      ]
+    }
   }
 }
