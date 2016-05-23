@@ -1,164 +1,132 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NotesApp</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NotesApp</title>
 
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <!-- Place favicon.ico in the root directory -->
 
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="/bower_components/normalize-css/normalize.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
+  <!-- build:css styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="/bower_components/normalize-css/normalize.css"/>
+  <!-- endbower -->
+  <!-- endbuild -->
 
-    <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/edit-dialog.css">
-    <!-- endbuild -->
-  </head>
-  <body>
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/edit-dialog.css">
+  <!-- endbuild -->
+</head>
+<body>
 
-  <header class="notes-toolbar">
-    <button class="toolbar--btn toolbar--menu">
-      Menü
-    </button>
+<header class="notes-toolbar">
+  <button class="toolbar--btn toolbar--menu">
+    Menü
+  </button>
 
 	<span class="toolbar--title">
 		Memo App
 	</span>
 
-    <button class="toolbar--btn toolbar--new">
-      Neu
-    </button>
-  </header>
+  <button class="toolbar--btn toolbar--new">
+    Neu
+  </button>
+</header>
 
-  <md-content flex>
-    <md-list>
-      <md-list-item class="notes-item">
-       <!-- <button class="note&#45;&#45;btn note&#45;&#45;check">
-          checked
-        </button>-->
-        <div class="list-item-text">
-          <p>
-            note 1
-          </p>
-        </div>
-        <md-divider inset></md-divider>
-      </md-list-item>
+<md-content flex>
+  <md-list>
+    <md-list-item class="notes-item">
+      <!-- <button class="note&#45;&#45;btn note&#45;&#45;check">
+         checked
+       </button>-->
+      <div class="list-item-text">
+        <p>
+          note 1
+        </p>
+      </div>
+      <md-divider inset></md-divider>
+    </md-list-item>
 
-      <md-list-item class="notes-item">
-       <!-- <button class="note&#45;&#45;btn note&#45;&#45;check">
-          checked
-        </button>-->
-        <div class="list-item-text">
-          <p>
-            note 2
-          </p>
-        </div>
-        <md-divider inset></md-divider>
-      </md-list-item>
+    <md-list-item class="notes-item">
+      <!-- <button class="note&#45;&#45;btn note&#45;&#45;check">
+         checked
+       </button>-->
+      <div class="list-item-text">
+        <p>
+          note 2
+        </p>
+      </div>
+      <md-divider inset></md-divider>
+    </md-list-item>
 
-      <md-list-item class="notes-item">
-        <!--<button class="note&#45;&#45;btn note&#45;&#45;check">
-          checked
-        </button>-->
-        <div class="list-item-text">
-          <p>
-            note 3
-          </p>
-        </div>
-        <md-divider inset></md-divider>
-      </md-list-item>
+    <md-list-item class="notes-item">
+      <!--<button class="note&#45;&#45;btn note&#45;&#45;check">
+        checked
+      </button>-->
+      <div class="list-item-text">
+        <p>
+          note 3
+        </p>
+      </div>
+      <md-divider inset></md-divider>
+    </md-list-item>
 
-    </md-list>
-  </md-content>
+  </md-list>
+</md-content>
 
-<<<<<<< HEAD
+<!-- edit mask -->
+<button id="test-button" style="position: absolute; bottom: 1rem; right: 1rem"
+        onclick="$('.edit-dialog').toggleClass('edit-dialog-open');">Edit (Test)
+</button>
+<div class="edit-dialog">
+  <form class="edit-mask">
+    <header class="edit-mask-header">
+      <button name="edit-cancel" aria-label="Cancel" class="btn-action btn-action-secondary">X</button>
+      <h2 class="edit-mask-header-title">Edit note</h2>
+      <button name="edit-submit" class="btn-action btn-action-primary">Save</button>
+    </header>
+    <fieldset>
+      <label for="edit-title">Title</label>
+      <input id="edit-title" type="text" name="title">
+    </fieldset>
+    <fieldset>
+      <label for="edit-description">Description</label>
+      <textarea id="edit-description" name="description"></textarea>
+    </fieldset>
+    <fieldset>
+      <legend>Priority</legend>
+      <input id="edit-priority-1" name="edit-priority" type="radio" class="edit-priority"/>
+      <label for="edit-priority-1" class="edit-priority-label epl-1"><span>1</span></label>
+      <input id="edit-priority-2" name="edit-priority" type="radio" class="edit-priority"/>
+      <label for="edit-priority-2" class="edit-priority-label epl-2"><span>2</span></label>
+      <input id="edit-priority-3" name="edit-priority" type="radio" class="edit-priority"/>
+      <label for="edit-priority-3" class="edit-priority-label epl-3"><span>3</span></label>
+      <input id="edit-priority-4" name="edit-priority" type="radio" class="edit-priority"/>
+      <label for="edit-priority-4" class="edit-priority-label epl-4"><span>14</label>
+      <input id="edit-priority-5" name="edit-priority" type="radio" class="edit-priority"/>
+      <label for="edit-priority-5" class="edit-priority-label epl-5"><span>5</span></label>
+    </fieldset>
+    <fieldset>
+      <label for="edit-duedate">Due date</label>
+      <input id="edit-duedate" type="date" name="duedate" class="field-date">
+      <button name="duetate-today" class="btn-quick-date">Today</button>
+      <button name="duetate-tomorrow" class="btn-quick-date">Tomorrow</button>
+    </fieldset>
+  </form>
+</div>
 
-    <!-- edit mask -->
-    <button id="test-button" style="position: absolute; bottom: 1rem; right: 1rem" onclick="$('.edit-dialog').toggle();">Edit (Test)</button>
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
 
-    <div class="edit-dialog">
-      <form class="edit-mask">
-        <fieldset class="edit-mask-header">
-          <button name="edit-cancel" aria-label="Cancel" class="btn-action btn-action-secondary">X</button>
-          <h2 class="edit-mask-header-title">Edit note</h2>
-          <button name="edit-submit" class="btn-action btn-action-primary">Save</button>
-        </fieldset>
-        <fieldset>
-          <label for="edit-title">Title</label>
-          <input id="edit-title" type="text" name="title">
-        </fieldset>
-        <fieldset>
-          <label for="edit-description">Description</label>
-          <textarea id="edit-description" name="description"></textarea>
-        </fieldset>
-        <fieldset>
-          <label for="edit-priority">Priority</label>
-          <input id="edit-priority" type="range" min="1" max="5" step="1" name="priority">
-        </fieldset>
-        <fieldset>
-          <label for="edit-duedate">Due date</label>
-          <input id="edit-duedate" type="date" name="duedate">
-          <button name="duetate-today" class="btn-quick-date">Today</button>
-          <button name="duetate-tomorrow" class="btn-quick-date">Tomorrow</button>
-        </fieldset>
-      </form>
-    </div>
-=======
-  <!-- edit mask -->
-  <button id="test-button" style="position: absolute; bottom: 1rem; right: 1rem" onclick="$('.edit-dialog').toggleClass('edit-dialog-open');">Edit (Test)</button>
-  <div class="edit-dialog">
-    <form class="edit-mask">
-      <header class="edit-mask-header">
-        <button name="edit-cancel" aria-label="Cancel" class="btn-action btn-action-secondary">X</button>
-        <h2 class="edit-mask-header-title">Edit note</h2>
-        <button name="edit-submit" class="btn-action btn-action-primary">Save</button>
-      </header>
-      <fieldset>
-        <label for="edit-title">Title</label>
-        <input id="edit-title" type="text" name="title">
-      </fieldset>
-      <fieldset>
-        <label for="edit-description">Description</label>
-        <textarea id="edit-description" name="description"></textarea>
-      </fieldset>
-      <fieldset>
-        <legend>Priority</legend>
-        <input id="edit-priority-1" name="edit-priority" type="radio" class="edit-priority" />
-        <label for="edit-priority-1" class="edit-priority-label epl-1"><span>1</span></label>
-        <input id="edit-priority-2" name="edit-priority" type="radio" class="edit-priority" />
-        <label for="edit-priority-2" class="edit-priority-label epl-2"><span>2</span></label>
-        <input id="edit-priority-3" name="edit-priority" type="radio" class="edit-priority" />
-        <label for="edit-priority-3" class="edit-priority-label epl-3"><span>3</span></label>
-        <input id="edit-priority-4" name="edit-priority" type="radio" class="edit-priority" />
-        <label for="edit-priority-4" class="edit-priority-label epl-4"><span>14</label>
-        <input id="edit-priority-5" name="edit-priority" type="radio" class="edit-priority" />
-        <label for="edit-priority-5" class="edit-priority-label epl-5"><span>5</span></label>
-      </fieldset>
-      <fieldset>
-        <label for="edit-duedate">Due date</label>
-        <input id="edit-duedate" type="date" name="duedate" class="field-date">
-        <button name="duetate-today" class="btn-quick-date">Today</button>
-        <button name="duetate-tomorrow" class="btn-quick-date">Tomorrow</button>
-      </fieldset>
-    </form>
-  </div>
->>>>>>> da4675ac8ef50058efe2443a9ec0b0cc4d688b37
-
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:js scripts/main.js -->
-    <script src="scripts/main.js"></script>
-    <script src="scripts/menu.js"></script>
-    <!-- endbuild -->
-  </body>
+<!-- build:js scripts/main.js -->
+<script src="scripts/main.js"></script>
+<script src="scripts/menu.js"></script>
+<!-- endbuild -->
+</body>
 </html>
