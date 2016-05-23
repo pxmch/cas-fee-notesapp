@@ -1,7 +1,9 @@
 @import 'colors';
 
 .edit-dialog {
-  display: none;
+  display: block;
+  visibility: hidden;
+  opacity: 0;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -13,14 +15,24 @@
   overflow: scroll;
   background-color: #FFF;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  transition: visibility 0s linear 200ms, opacity 200ms;
 }
 
+.edit-dialog-open {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 200ms;
+}
 
 .edit-mask-header {
-  padding: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 1rem;
   background-color: $color-700;
   color: #FFF;
-  vertical-align: middle;
 }
 
 .edit-mask-header-title {
@@ -29,17 +41,9 @@
 }
 
 .btn-action {
-  display: inline-block;
   border: none;
   color: #FFF;
   background-color: transparent;
-}
-
-.btn-action-primary {
-  float: right;
-}
-
-.btn-action-secondary {
 }
 
 .edit-mask {
@@ -51,8 +55,9 @@
     border: none;
   }
 
-  label {
-    display: inline-block;
+  label,
+  legend {
+    display: block;
     margin-bottom: 0.5rem;
     color: rgba(0, 0, 0, 0.38);
     font-size: 0.9rem;
@@ -65,10 +70,73 @@
     border-bottom: 1px solid grey;
     font-family: Roboto, sans-serif;
     font-size: 1.4rem;
+
+    &:focus {
+      border-bottom: 2px solid $color-600;
+      outline: none;
+    }
+
   }
 
   textarea {
     height: 4rem;
+  }
+
+  .field-date {
+    width: 12rem;
+  }
+
+  .edit-priority {
+    position: relative;
+    width: 2rem;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+  }
+
+  .edit-priority:hover + label,
+  .edit-priority:checked + label {
+    background: url('data:image/svg+xml;utf8,<svg fill="#1976D2" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>') repeat-x top right;
+    background-size: 2rem 2rem;
+  }
+
+  .edit-priority-label {
+    position: absolute;
+    left: 1rem;
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    background: url('data:image/svg+xml;utf8,<svg fill="#1976D2" fill-opacity="0.2" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>') no-repeat top right;
+    background-size: 2rem 2rem;
+    line-height: 2rem;
+
+    span {
+      opacity: 0;
+    }
+  }
+
+  .epl-1 {
+    z-index: 10;
+  }
+
+  .epl-2 {
+    padding-left: 2rem;
+    z-index: 9;
+  }
+
+  .epl-3 {
+    padding-left: 4rem;
+    z-index: 8;
+  }
+
+  .epl-4 {
+    padding-left: 6rem;
+    z-index: 7;
+  }
+
+  .epl-5 {
+    padding-left: 8rem;
+    z-index: 6;
   }
 }
 
