@@ -23,35 +23,56 @@
 </head>
 <body>
 
-<header class="notes-toolbar">
-  <button class="toolbar--btn toolbar--menu">
-    Menü
+<header class="title-header">
+  <button class="toolbar--btn">
+    <a href="#" class="menu-buger">
+      <i class="fa fa-bars" aria-hidden="true"></i></a>
   </button>
 
-	<span class="toolbar--title">
+	<span class="menu-title">
 		Memo App
 	</span>
 
-  <button class="toolbar--btn toolbar--new">
-    Neu
+  <button class="toolbar--btn">
+    <a href="#" class="edit-toggle">
+      <i class="fa fa-pencil" aria-hidden="true"></i></a>
   </button>
 </header>
 
 
-<div>
+<div class="note-item">
 
   <input type="checkbox" name="note-status" value="open">
-  <span> askcjnascjnk </span>
+  <span class="note-content"> Note 1 </span>
   <a href="#" class="edit-toggle">
-    <i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+    <i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+</div>
+
+<div class="note-item">
+
+  <input type="checkbox" name="note-status" value="open">
+  <span class="note-content"> Note 2 </span>
+  <a href="#" class="edit-toggle">
+    <i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+</div>
+
+<div class="note-item">
+
+  <input type="checkbox" name="note-status" value="open">
+  <span class="note-content"> Note 3 </span>
+  <a href="#" class="edit-toggle">
+    <i class="fa fa-pencil" aria-hidden="true"></i></a>
+
 </div>
 
 <!-- edit mask -->
 <div class="edit-dialog">
   <form class="edit-mask">
-    <header class="edit-mask-header">
+    <header class="title-header">
       <button name="edit-cancel" aria-label="Cancel" class="btn-action btn-action-secondary edit-toggle">X</button>
-      <h2 class="edit-mask-header-title">Edit note</h2>
+      <span class="menu-title">Edit note</span>
       <button name="edit-submit" class="btn-action btn-action-primary">Save</button>
     </header>
     <fieldset>

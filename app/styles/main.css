@@ -1,14 +1,14 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
-body {
+body, .note-content {
   background: #2196F3;
   font-family: Roboto, sans-serif;
-  color: #000;
+  color: #FFF;
   margin: 10px; }
 
 .background--blur {
   background: #0D47A1; }
 
-.notes-toolbar {
+.title-header {
   background-color: #4878A1;
   color: white;
   padding: 10px 20px;
@@ -42,7 +42,7 @@ body {
   border-radius: 50% !important;
   overflow: hidden; }
 
-.toolbar--title {
+.menu-title {
   display: block;
   float: left;
   line-height: 42px;
@@ -51,31 +51,13 @@ body {
   font-size: 1.25em;
   white-space: nowrap; }
 
-.example-btn {
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
-  padding: 5px 15px;
-  background-color: transparent;
-  line-height: 42px;
-  text-transform: uppercase;
-  font-family: sans-serif;
-  color: white !important;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  cursor: pointer;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0); }
-
 button {
   background: none transparent;
   border: 0 none;
   color: inherit; }
 
-.example-toolbar--search, .toolbar--new {
-  float: right; }
+.note-item {
+  padding: 20px; }
 
 .edit-dialog {
   display: block;
@@ -99,7 +81,7 @@ button {
   opacity: 1;
   transition: visibility 0s linear 0s, opacity 200ms; }
 
-.edit-mask-header {
+.title-header {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
