@@ -10,5 +10,9 @@
     $('body').toggleClass('style-change');
   });
 
+  $('.menu-toggle').on('click', function () {
+    $('.filter-dialog').toggleClass('filter-dialog-open');
+  });
+
 })();
 

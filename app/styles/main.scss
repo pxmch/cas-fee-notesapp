@@ -3,20 +3,25 @@
 @import 'colors';
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
+$font-stack:    Roboto, sans-serif;
+$background-color: $color-200;
+$primary-color: #FFF;
+
 body, .note-content {
-  background: $color-200;
+  background: $background-color;
   font-family: Roboto, sans-serif;
-  color: #FFF;
+  color: $primary-color;
   margin: 10px;
 
   &.style-change {
-    background: darken($color-200, 10%);
+    background: darken($background-color, 10%);
+    color: lighten($primary-color, 10%)
   }
 }
 
 a {
   background-color: transparent;
-  color: #FFF;
+  color: $primary-color;
 }
 
 .title-header {
@@ -28,7 +33,7 @@ a {
   padding: 1rem;
   font-size: 1.25em;
   background-color: $color-700;
-  color: #FFF;
+  color: $primary-color;
 }
 
 .toolbar--menu {
@@ -71,15 +76,22 @@ a {
   white-space: nowrap;
 }
 
-.list-sorting {
-  display: flex;
+.filter-dialog {
+  display: block;
+  visibility: hidden;;
+  opacity: 0;
   flex-wrap: nowrap;
   flex-direction: row;
   align-items: baseline;
   justify-content: space-between;
   padding: 1rem;
   background-color: $color-400;
-  color: #FFF;
+  color: $primary-color;
+
+  &.filter-dialog-open {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 button {

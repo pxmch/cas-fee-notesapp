@@ -5,7 +5,8 @@ body, .note-content {
   color: #FFF;
   margin: 10px; }
   body.style-change, .note-content.style-change {
-    background: #60b3f6; }
+    background: #60b3f6;
+    color: white; }
 
 a {
   background-color: transparent;
@@ -57,8 +58,10 @@ a {
   margin-left: 15px;
   white-space: nowrap; }
 
-.list-sorting {
-  display: flex;
+.filter-dialog {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
   flex-wrap: nowrap;
   flex-direction: row;
   align-items: baseline;
@@ -66,6 +69,9 @@ a {
   padding: 1rem;
   background-color: #42A5F5;
   color: #FFF; }
+  .filter-dialog.filter-dialog-open {
+    visibility: visible;
+    opacity: 1; }
 
 button {
   background: none transparent;
