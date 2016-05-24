@@ -59,7 +59,8 @@ a {
   white-space: nowrap; }
 
 .filter-dialog {
-  display: block;
+  display: flex;
+  width: 75%;
   visibility: hidden;
   opacity: 0;
   flex-wrap: nowrap;
