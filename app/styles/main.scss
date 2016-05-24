@@ -78,14 +78,13 @@ a {
 
 .filter-dialog {
   display: flex;
-  width: 75%;
   visibility: hidden;;
   opacity: 0;
+  padding: 1rem;
   flex-wrap: nowrap;
   flex-direction: row;
   align-items: baseline;
   justify-content: space-between;
-  padding: 1rem;
   background-color: $color-400;
   color: $primary-color;
 
@@ -104,6 +103,7 @@ button {
 .note-item {
 
   padding: 20px;
+  //background-color: $primary-color;
 }
 
 @import 'edit-dialog';

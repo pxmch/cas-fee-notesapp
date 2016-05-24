@@ -14,5 +14,9 @@
     $('.filter-dialog').toggleClass('filter-dialog-open');
   });
 
+  $('.btn-action-primary').on('click', function(){
+    //save the form
+    });
+
 })();
 
