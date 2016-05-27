@@ -34,7 +34,7 @@
 
   <button class="note--btn">
     <a href="#" class="edit-toggle">
-      <i class="fa fa-pencil" aria-hidden="true"></i></a>
+      <i class="fa fa-plus" aria-hidden="true"></i></a>
   </button>
 </header>
 
@@ -51,42 +51,42 @@
     <span>
       <a href="#" class="style-toggle">
         <i class="fa fa-paint-brush" aria-hidden="true"></i></a>
-
 	</span>
 </div>
 
-<div class="note-item">
-
-  <input type="checkbox" name="note-status" value="open">
-  <span class="note-content"> Note 1 </span>
-  <a href="#" class="edit-toggle">
-    <i class="fa fa-pencil" aria-hidden="true"></i></a>
-
-</div>
-
-<div class="note-item">
-
-  <input type="checkbox" name="note-status" value="open">
-  <span class="note-content"> Note 2 </span>
-  <a href="#" class="edit-toggle">
-    <i class="fa fa-pencil" aria-hidden="true"></i></a>
-
-</div>
-
-<div class="note-item">
-
-  <input type="checkbox" name="note-status" value="open">
-  <span class="note-content"> Note 3 </span>
-  <a href="#" class="edit-toggle">
-    <i class="fa fa-pencil" aria-hidden="true"></i></a>
-
-</div>
+<ul class="note_list">
+  <li class="note_item">
+    <input type="checkbox" name="note-status" value="open" class="note_item__status">
+    <div class="note_item__content">
+      <h3 class="note_item__title">Website erstellen</h3>
+      <div class="note_item__description">
+        Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.
+      </div>
+    </div>
+    <a href="#" class="note_item__edit_toggle">
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+    </a>
+  </li>
+  <!-->
+  <li class="note_item">
+    <input type="checkbox" name="note-status" value="open" class="note_item__status">
+    <div class="note_item__content">
+      <h3 class="note_item__title">Blumentopf kaufen</h3>
+      <div class="note_item__description">
+        Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze Pangrams.
+      </div>
+    </div>
+    <a href="#" class="note_item__edit_toggle">
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
 
 <!-- edit mask -->
 <div class="edit-dialog">
   <form class="edit-mask">
     <header class="title-header">
-      <button name="edit-cancel" aria-label="Cancel" class="btn-action btn-action-secondary edit-toggle">X</button>
+      <button name="edit-cancel" aria-label="Cancel" class="btn-action btn-action-secondary edit-toggle"><i class="fa fa-times-circle-o" aria-hidden="true"></i></button>
       <span class="menu-title">Edit note</span>
       <button name="edit-submit" class="btn-action btn-action-primary">Save</button>
     </header>

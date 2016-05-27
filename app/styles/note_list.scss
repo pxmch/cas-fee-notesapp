@@ -1,0 +1,48 @@
+@import 'colors';
+
+.note_list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.note_item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 0 0.5rem 0;
+  padding: 1.5rem;
+  background: #FFF;
+  color: $default-font-color;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.note_item__status {
+  flex-basis: 2rem;
+  background-color: red;
+  border: 1px solid transparent;
+}
+
+.note_item__content {
+  flex-grow: 2;
+  flex-basis: 100%;
+  margin: 0 1.5rem 0 0.5rem;
+}
+
+.note_item__title {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+.note_item__description {
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.note_item__edit_toggle {
+  flex-basis: 2rem;
+  font-size: 1.5rem;
+  color: $default-font-color;
+}
