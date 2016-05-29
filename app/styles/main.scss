@@ -6,11 +6,12 @@
 $background-color: $color-200;
 $primary-color: #FFF;
 
-body, .note-content {
+body {
   background: $background-color;
   font-family: Roboto, sans-serif;
   color: $primary-color;
   margin: 0;
+  min-width: 320px;
 
   &.style-change {
     background: darken($background-color, 10%);
