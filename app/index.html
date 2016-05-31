@@ -58,7 +58,7 @@
     {{#each items}}
     <li class="note_item">
       <div class="note_item__status">
-        <input type="checkbox" name="note-status" id="note_item_status_{{id}}" value="finished">
+        <input type="checkbox" name="note-status" id="note_item_status_{{id}}" value="finished" {{#if status}}checked{{/if}}>
         <label for="note_item_status_{{id}}"></label>
       </div>
       <div class="note_item__content">
@@ -66,7 +66,7 @@
         <div class="note_item__description">{{description}}</div>
         <div class="note_item__meta">
           <div class="note_item__priority">
-            <span class="note_item__priority_indicator" style="width: calc( {{id}} * 24px);"></span>
+            <span class="note_item__priority_indicator" style="width: calc( {{priority}} * 24px);"></span>
             <span class="sr-only">Pritority: {{priority}}</span>
           </div>
           <div class="note_item__duedate">{{duedate}}</div>
