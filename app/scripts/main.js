@@ -1,7 +1,14 @@
-(function () {
+$(function() {
   'use strict';
 
-  $('.edit-toggle').on('click', function () {
+  var TheNoteList = new NoteList();
+  var noteItemTemlpate = $('#node_item_template').html();
+  var noteItems = Handlebars.compile(noteItemTemlpate);
+
+  $('.note_list').append(noteItems(TheNoteList.getItems()));
+
+
+  $('.note_item__edit_toggle').on('click', function () {
     $('.edit-dialog').toggleClass('edit-dialog-open');
   });
 
@@ -15,10 +22,29 @@
 
   $('.btn-action-primary').on('click', function(){
     //save the form
-    });
+  });
 
-  var storage = {
-    items: [
+});
+
+
+function NoteList() {
+
+  const STORAGE_KEY = 'note-items';
+
+  var self = this;
+  var items = [];
+
+  self.getItems = function(){
+    return self.items;
+  }
+
+  self.addItem  = function(item) {
+    self.items.push(item);
+  }
+
+  function storeTestData() {
+    console.log('store test data');
+    self.items = [
       {
         id: 1,
         status: 0,
@@ -43,12 +69,40 @@
         priority: 4,
         duedate: '2016-05-31'
       }
-    ]
-  };
+    ];
+    storeItems();
+  }
 
-  var noteItemTemlpate = $('#node_item_template').html();
-  var noteItems = Handlebars.compile(noteItemTemlpate);
-  $('.note_list').append(noteItems(storage));
+  function hasStorage() {
+    try {
+      localStorage.setItem('test-storage', 'test');
+      localStorage.removeItem('test-storage');
+      return true;
+    }
+    catch (exception) {
+      return false;
+    }
+  }
 
-})();
+  function loadItems() {
+    if (!hasStorage()){
+      alert('No local storage available.');
+      return;
+    }
+    else if (localStorage.getItem(STORAGE_KEY)) {
+      self.items = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    }
+  }
 
+  function storeItems() {
+    if (!hasStorage()){
+      alert('No local storage available.');
+      return;
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(self.items));
+  }
+
+  //storeTestData();
+  loadItems();
+
+}

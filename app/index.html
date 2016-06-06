@@ -55,7 +55,7 @@
 
 <ul class="note_list">
   <script id="node_item_template" type="text/x-handlebars-template">​
-    {{#each items}}
+    {{#each this}}
     <li class="note_item">
       <div class="note_item__status">
         <input type="checkbox" name="note-status" id="note_item_status_{{id}}" value="finished" {{#if status}}checked{{/if}}>
@@ -72,7 +72,7 @@
           <div class="note_item__duedate">{{duedate}}</div>
         </div>
       </div>
-      <a href="#" class="note_item__edit_toggle">
+      <a href="#" class="note_item__edit_toggle" data-id="{{id}}">
         <i class="fa fa-pencil" aria-hidden="true"></i>
       </a>
     </li>
