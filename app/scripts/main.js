@@ -2,15 +2,67 @@ $(function() {
   'use strict';
 
   var TheNoteList = new NoteList();
-  var noteItemTemlpate = $('#node_item_template').html();
-  var noteItems = Handlebars.compile(noteItemTemlpate);
 
-  $('.note_list').append(noteItems(TheNoteList.getItems()));
-
-
-  $('.note_item__edit_toggle').on('click', function () {
-    $('.edit-dialog').toggleClass('edit-dialog-open');
+  $('.js-button-add-item').on('click', function () {
+    $('.edit-dialog').addClass('edit-dialog-open').data('mode', 'add');
   });
+
+  $('.js-button-item-cancel').on('click', function () {
+    $('.edit-dialog').removeClass('edit-dialog-open').data('mode', '').data('index', '');
+    $('#edit-mask')[0].reset();
+  });
+
+  $('.js-btn-item-save').on('click', function () {
+    var item = new Note(
+      $('#edit-title').val(),
+      $('#edit-description').val(),
+      $('input[name="edit-priority"]:checked').val(),
+      $('#edit-duedate').val()
+    );
+
+    if($('.edit-dialog').data('mode') == 'edit') {
+      var index = $('.edit-dialog').data('index');
+      TheNoteList.replaceItem(index, item);
+    } else {
+      TheNoteList.addItem(item);
+    }
+
+    $('.edit-dialog').removeClass('edit-dialog-open').data('mode', '').data('index', '');
+    $('#edit-mask')[0].reset();
+  });
+
+  $('.js-btn-duedate-today').on('click', function () {
+      var d = new Date();
+      var month = (d.getMonth() + 1);
+      var day = d.getDate();
+
+      if(month < 10) {
+        month = "0" + month;
+      }
+      if(day < 10) {
+        day = "0" + day;
+      }
+
+      var today = d.getFullYear() + '-' + month + '-' + day;
+      $('#edit-duedate').val(today);
+  });
+
+  $('.js-btn-duedate-tomorrow').on('click', function () {
+    var d = new Date(Date.now()+24*60*60*1000);
+    var month = (d.getMonth() + 1);
+    var day = d.getDate();
+
+    if(month < 10) {
+      month = "0" + month;
+    }
+    if(day < 10) {
+      day = "0" + day;
+    }
+
+    var tomorrow = d.getFullYear() + '-' + month + '-' + day;
+    $('#edit-duedate').val(tomorrow);
+  });
+
 
   $('.style-toggle').on('click', function () {
     $('body').toggleClass('style-change');
@@ -20,58 +72,61 @@ $(function() {
     $('.filter-dialog').toggleClass('filter-dialog-open');
   });
 
-  $('.btn-action-primary').on('click', function(){
-    //save the form
-  });
+  function initEditButtons () {
+    $('.js-button-edit-item').on('click', function () {
+      var index = $(this).data('id');
+      var item = TheNoteList.getItem(index);
+      $('#edit-title').val(item.title);
+      $('#edit-description').val(item.title);
+      $('input[name="edit-priority"][value="'+item.priority+'"]').prop('checked', true);
+      $('#edit-duedate').val(item.duedate);
+      $('.edit-dialog').addClass('edit-dialog-open').data('mode', 'edit').data('index', index);
+    });
+  }
+
+  initEditButtons();
 
 });
-
 
 function NoteList() {
 
   const STORAGE_KEY = 'note-items';
 
   var self = this;
-  var items = [];
+  self.items = [];
 
   self.getItems = function(){
     return self.items;
-  }
+  };
+
+  self.getItem = function(index){
+    return self.items[index];
+  };
 
   self.addItem  = function(item) {
     self.items.push(item);
-  }
+    storeItems();
+    refreshList();
+  };
+
+  self.replaceItem  = function(index, item) {
+    self.items.splice(index, 1, item);
+    storeItems();
+    refreshList();
+  };
+
+  self.deleteItem  = function(index) {
+    self.items.splice(index, 1);
+    storeItems();
+    refreshList();
+  };
 
   function storeTestData() {
-    console.log('store test data');
-    self.items = [
-      {
-        id: 1,
-        status: 0,
-        title: 'Website erstellen',
-        description: 'Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.',
-        priority: 5,
-        duedate: '2016-08-01'
-      },
-      {
-        id: 2,
-        status: 1,
-        title: 'Blumentopf kaufen',
-        description: 'Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze Pangrams.',
-        priority: 3,
-        duedate: '2016-07-11'
-      },
-      {
-        id: 3,
-        status: 1,
-        title: 'Eine schlaue Aufgabe ausdenken und diese dann als Notiz hier erfassen',
-        description: 'Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze Pangrams.',
-        priority: 4,
-        duedate: '2016-05-31'
-      }
-    ];
+    self.addItem(new Note('Website erstellen', 'Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.', 3, '2016-07-15'));
+    self.addItem(new Note('Blumentopf kaufen', 'Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze Pangrams.', 4, '2016-07-16'));
+    self.addItem(new Note('Aufgabenliste programmieren', 'Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze Pangrams.', 5, '2016-07-17'));
     storeItems();
-  }
+  };
 
   function hasStorage() {
     try {
@@ -82,7 +137,7 @@ function NoteList() {
     catch (exception) {
       return false;
     }
-  }
+  };
 
   function loadItems() {
     if (!hasStorage()){
@@ -91,8 +146,9 @@ function NoteList() {
     }
     else if (localStorage.getItem(STORAGE_KEY)) {
       self.items = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      refreshList();
     }
-  }
+  };
 
   function storeItems() {
     if (!hasStorage()){
@@ -100,9 +156,25 @@ function NoteList() {
       return;
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(self.items));
-  }
+  };
+
+  function refreshList() {
+    var source = $('#node_item_template').html();
+    var template = Handlebars.compile(source);
+    $('.note_list').html(template(self.getItems()));
+    //initEditButtons();
+  };
 
   //storeTestData();
   loadItems();
+}
 
+function Note(title, description, priority, duedate) {
+  var self = this;
+  self.title = title;
+  self.description = description;
+  self.status = 0;
+  self.priority = priority;
+  self.duedate = duedate;
+  self.lastmodified = Date.now();
 }

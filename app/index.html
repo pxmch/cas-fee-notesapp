@@ -32,7 +32,7 @@
 	</span>
 
   <button class="note--btn">
-    <a href="#" class="edit-toggle">
+    <a href="#" class="edit-toggle js-button-add-item">
       <i class="fa fa-plus" aria-hidden="true"></i></a>
   </button>
 </header>
@@ -53,40 +53,40 @@
 	</span>
 </div>
 
-<ul class="note_list">
-  <script id="node_item_template" type="text/x-handlebars-template">​
-    {{#each this}}
-    <li class="note_item">
-      <div class="note_item__status">
-        <input type="checkbox" name="note-status" id="note_item_status_{{id}}" value="finished" {{#if status}}checked{{/if}}>
-        <label for="note_item_status_{{id}}"></label>
-      </div>
-      <div class="note_item__content">
-        <h3 class="note_item__title">{{title}}</h3>
-        <div class="note_item__description">{{description}}</div>
-        <div class="note_item__meta">
-          <div class="note_item__priority">
-            <span class="note_item__priority_indicator" style="width: calc( {{priority}} * 24px);"></span>
-            <span class="sr-only">Pritority: {{priority}}</span>
-          </div>
-          <div class="note_item__duedate">{{duedate}}</div>
+<script id="node_item_template" type="text/x-handlebars-template">​
+  {{#each this}}
+  <li class="note_item">
+    <div class="note_item__status">
+      <input type="checkbox" name="note-status" id="note_item_status_{{@index}}" value="finished" {{#if status}}checked{{/if}}>
+      <label for="note_item_status_{{@index}}"></label>
+    </div>
+    <div class="note_item__content">
+      <h3 class="note_item__title">{{title}}</h3>
+      <div class="note_item__description">{{description}}</div>
+      <div class="note_item__meta">
+        <div class="note_item__priority">
+          <span class="note_item__priority_indicator" style="width: calc( {{priority}} * 24px);"></span>
+          <span class="sr-only">Pritority: {{priority}}</span>
         </div>
+        <div class="note_item__duedate">{{duedate}}</div>
       </div>
-      <a href="#" class="note_item__edit_toggle" data-id="{{id}}">
-        <i class="fa fa-pencil" aria-hidden="true"></i>
-      </a>
-    </li>
-    {{/each}}
-  </script>
-</ul>
+    </div>
+    <a href="#" class="note_item__edit_toggle js-button-edit-item" data-id="{{@index}}">
+    <i class="fa fa-pencil" aria-hidden="true"></i>
+    </a>
+  </li>
+  {{/each}}
+</script>
+
+<ul class="note_list"></ul>
 
 <!-- edit mask -->
 <div class="edit-dialog">
-  <form class="edit-mask">
+  <form id="edit-mask" class="edit-mask">
     <header class="title-header">
-      <button name="edit-cancel" aria-label="Cancel" class="btn-action btn-action-secondary edit-toggle"><i class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+      <button type="button" name="edit-cancel" aria-label="Cancel" class="btn-action btn-action-secondary edit-toggle js-button-item-cancel"><i class="fa fa-times-circle-o" aria-hidden="true"></i></button>
       <span class="menu-title">Edit note</span>
-      <button name="edit-submit" class="btn-action btn-action-primary">Save</button>
+      <button type="button" name="edit-submit" class="btn-action btn-action-primary js-btn-item-save">Save</button>
     </header>
     <fieldset>
       <label for="edit-title">Title</label>
@@ -98,22 +98,22 @@
     </fieldset>
     <fieldset>
       <legend>Priority</legend>
-      <input id="edit-priority-1" name="edit-priority" type="radio" class="edit-priority"/>
+      <input id="edit-priority-1" name="edit-priority" type="radio" class="edit-priority" value="1">
       <label for="edit-priority-1" class="edit-priority-label epl-1"><span>1</span></label>
-      <input id="edit-priority-2" name="edit-priority" type="radio" class="edit-priority"/>
+      <input id="edit-priority-2" name="edit-priority" type="radio" class="edit-priority" value="2">
       <label for="edit-priority-2" class="edit-priority-label epl-2"><span>2</span></label>
-      <input id="edit-priority-3" name="edit-priority" type="radio" class="edit-priority"/>
+      <input id="edit-priority-3" name="edit-priority" type="radio" class="edit-priority" value="3">
       <label for="edit-priority-3" class="edit-priority-label epl-3"><span>3</span></label>
-      <input id="edit-priority-4" name="edit-priority" type="radio" class="edit-priority"/>
+      <input id="edit-priority-4" name="edit-priority" type="radio" class="edit-priority" value="4">
       <label for="edit-priority-4" class="edit-priority-label epl-4"><span>14</label>
-      <input id="edit-priority-5" name="edit-priority" type="radio" class="edit-priority"/>
+      <input id="edit-priority-5" name="edit-priority" type="radio" class="edit-priority" value="5">
       <label for="edit-priority-5" class="edit-priority-label epl-5"><span>5</span></label>
     </fieldset>
     <fieldset>
       <label for="edit-duedate">Due date</label>
       <input id="edit-duedate" type="date" name="duedate" class="field-date">
-      <button name="duetate-today" class="btn-quick-date">Today</button>
-      <button name="duetate-tomorrow" class="btn-quick-date">Tomorrow</button>
+      <button type="button" name="duetate-today" class="btn-quick-date js-btn-duedate-today">Today</button>
+      <button type="button" name="duetate-tomorrow" class="btn-quick-date js-btn-duedate-tomorrow">Tomorrow</button>
     </fieldset>
   </form>
 </div>
