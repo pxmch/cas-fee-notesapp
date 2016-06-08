@@ -5,6 +5,7 @@
   visibility: hidden;
   opacity: 0;
   position: absolute;
+  z-index: 100;
   top: 50%;
   left: 50%;
   box-sizing: border-box;
@@ -15,13 +16,31 @@
   overflow: scroll;
   background-color: #FFF;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-  transition: visibility 0s linear 200ms, opacity 200ms;
+  transition: opacity 200ms, visibility 400ms;
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 250ms;
+  }
 }
 
-.edit-dialog-open {
-  visibility: visible;
-  opacity: 1;
-  transition: visibility 0s linear 0s, opacity 200ms;
+.edit-dialog-backdrop {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.8);
+  transition: opacity 300ms, z-index 400ms;
+
+  &.active {
+    opacity: 1;
+    z-index: 10;
+    transition: opacity 300ms;
+  }
 }
 
 .edit-mask-header-title {

@@ -1,17 +1,35 @@
 $(function() {
   'use strict';
 
+  function toggleEditMask(state){
+    if(state == 'show') {
+      $('.edit-dialog-backdrop').addClass('active');
+      $('.edit-dialog').addClass('active');
+    }
+    else {
+      $('.edit-dialog-backdrop').removeClass('active');
+      $('.edit-dialog').removeClass('active').data('mode', '').data('index', '');
+      $('#edit-mask')[0].reset();
+    }
+  }
+
   var TheNoteList = new NoteList();
 
+  /* event handlers */
+
+  // open new item dialog
   $('.js-button-add-item').on('click', function () {
-    $('.edit-dialog').addClass('edit-dialog-open').data('mode', 'add');
+    $('#edit-menu-title').text('Add note');
+    $('.edit-dialog').data('mode', 'add')
+    toggleEditMask('show');
   });
 
+  // cancel edit mask
   $('.js-button-item-cancel').on('click', function () {
-    $('.edit-dialog').removeClass('edit-dialog-open').data('mode', '').data('index', '');
-    $('#edit-mask')[0].reset();
+    toggleEditMask('hide');
   });
 
+  // save new/edited item
   $('.js-btn-item-save').on('click', function () {
     var item = new Note(
       $('#edit-title').val(),
@@ -26,11 +44,10 @@ $(function() {
     } else {
       TheNoteList.addItem(item);
     }
-
-    $('.edit-dialog').removeClass('edit-dialog-open').data('mode', '').data('index', '');
-    $('#edit-mask')[0].reset();
+    toggleEditMask('hide');
   });
 
+  // today button
   $('.js-btn-duedate-today').on('click', function () {
       var d = new Date();
       var month = (d.getMonth() + 1);
@@ -47,6 +64,7 @@ $(function() {
       $('#edit-duedate').val(today);
   });
 
+  // tomorrow button
   $('.js-btn-duedate-tomorrow').on('click', function () {
     var d = new Date(Date.now()+24*60*60*1000);
     var month = (d.getMonth() + 1);
@@ -63,28 +81,29 @@ $(function() {
     $('#edit-duedate').val(tomorrow);
   });
 
+  // edit item
+  $('.note_list').on('click', '.js-button-edit-item',  function () {
+    var index = $(this).data('id');
+    var item = TheNoteList.getItem(index);
+    $('#edit-title').val(item.title);
+    $('#edit-description').val(item.description);
+    $('input[name="edit-priority"][value="'+item.priority+'"]').prop('checked', true);
+    $('#edit-duedate').val(item.duedate);
 
+    $('#edit-menu-title').text('Edit note');
+    toggleEditMask('show');
+    $('.edit-dialog').data('mode', 'edit').data('index', index);
+  });
+
+  // style toggle
   $('.style-toggle').on('click', function () {
     $('body').toggleClass('style-change');
   });
 
+  // menu toggle
   $('.menu-toggle').on('click', function () {
     $('.filter-dialog').toggleClass('filter-dialog-open');
   });
-
-  function initEditButtons () {
-    $('.js-button-edit-item').on('click', function () {
-      var index = $(this).data('id');
-      var item = TheNoteList.getItem(index);
-      $('#edit-title').val(item.title);
-      $('#edit-description').val(item.title);
-      $('input[name="edit-priority"][value="'+item.priority+'"]').prop('checked', true);
-      $('#edit-duedate').val(item.duedate);
-      $('.edit-dialog').addClass('edit-dialog-open').data('mode', 'edit').data('index', index);
-    });
-  }
-
-  initEditButtons();
 
 });
 
@@ -106,19 +125,17 @@ function NoteList() {
   self.addItem  = function(item) {
     self.items.push(item);
     storeItems();
-    refreshList();
   };
 
   self.replaceItem  = function(index, item) {
     self.items.splice(index, 1, item);
     storeItems();
-    refreshList();
   };
 
   self.deleteItem  = function(index) {
     self.items.splice(index, 1);
     storeItems();
-    refreshList();
+
   };
 
   function storeTestData() {
@@ -156,13 +173,13 @@ function NoteList() {
       return;
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(self.items));
+    refreshList();
   };
 
   function refreshList() {
     var source = $('#node_item_template').html();
     var template = Handlebars.compile(source);
     $('.note_list').html(template(self.getItems()));
-    //initEditButtons();
   };
 
   //storeTestData();

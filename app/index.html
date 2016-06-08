@@ -85,7 +85,7 @@
   <form id="edit-mask" class="edit-mask">
     <header class="title-header">
       <button type="button" name="edit-cancel" aria-label="Cancel" class="btn-action btn-action-secondary edit-toggle js-button-item-cancel"><i class="fa fa-times-circle-o" aria-hidden="true"></i></button>
-      <span class="menu-title">Edit note</span>
+      <span id="edit-menu-title" class="menu-title">Edit note</span>
       <button type="button" name="edit-submit" class="btn-action btn-action-primary js-btn-item-save">Save</button>
     </header>
     <fieldset>
@@ -117,6 +117,7 @@
     </fieldset>
   </form>
 </div>
+<div class="edit-dialog-backdrop"></div>
 
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
