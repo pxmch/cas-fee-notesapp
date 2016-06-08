@@ -47,6 +47,14 @@ $(function() {
     toggleEditMask('hide');
   });
 
+  $('.js-button-delete-item').on('click', function () {
+    if(window.confirm('Delete this note?')) {
+      var index = $('.edit-dialog').data('index');
+      TheNoteList.deleteItem(index);
+      toggleEditMask('hide');
+    }
+  });
+
   // today button
   $('.js-btn-duedate-today').on('click', function () {
       var d = new Date();
@@ -135,7 +143,6 @@ function NoteList() {
   self.deleteItem  = function(index) {
     self.items.splice(index, 1);
     storeItems();
-
   };
 
   function storeTestData() {
