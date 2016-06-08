@@ -5,11 +5,15 @@ $(function() {
     if(state == 'show') {
       $('.edit-dialog-backdrop').addClass('active');
       $('.edit-dialog').addClass('active');
+      if($('.edit-dialog').data('mode') === 'add') {
+        $('.edit-mask-delete-button').hide();
+      }
     }
     else {
       $('.edit-dialog-backdrop').removeClass('active');
       $('.edit-dialog').removeClass('active').data('mode', '').data('index', '');
       $('#edit-mask')[0].reset();
+      $('.edit-mask-delete-button').show();
     }
   }
 
@@ -62,10 +66,10 @@ $(function() {
       var day = d.getDate();
 
       if(month < 10) {
-        month = "0" + month;
+        month = '0' + month;
       }
       if(day < 10) {
-        day = "0" + day;
+        day = '0' + day;
       }
 
       var today = d.getFullYear() + '-' + month + '-' + day;
@@ -79,10 +83,10 @@ $(function() {
     var day = d.getDate();
 
     if(month < 10) {
-      month = "0" + month;
+      month = '0' + month;
     }
     if(day < 10) {
-      day = "0" + day;
+      day = '0' + day;
     }
 
     var tomorrow = d.getFullYear() + '-' + month + '-' + day;
