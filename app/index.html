@@ -39,13 +39,16 @@
 
 <div class="filter-dialog">
   <span>
-		Filter 1
+		<a id="js-sort-by-duedate" href="#" class="desc">by due date</a>
 	</span>
   <span>
-		Filter 2
+		<a id="js-sort-by-createdate" href="#" class="desc">by date created</a>
 	</span>
   <span>
-		Filter 3
+		<a id="js-sort-by-priority" href="#" class="desc">by importance</a>
+	</span>
+  <span>
+		show finished
 	</span>
     <span>
       <a href="#" class="style-toggle">
@@ -56,9 +59,9 @@
 <script id="node_item_template" type="text/x-handlebars-template">​
   {{#each this}}
   <li class="note_item">
-    <div class="note_item__status">
-      <input type="checkbox" name="note-status" id="note_item_status_{{@index}}" value="finished" {{#if status}}checked{{/if}}>
-      <label for="note_item_status_{{@index}}"></label>
+    <div class="note_item__flag_done">
+      <input type="checkbox" name="note-flag-done" id="note_item_flag_done_{{@index}}" class="js-item-flag-done" data-id="{{@index}}" value="finished" {{#if isDone}}checked{{/if}}>
+      <label for="note_item_flag_done_{{@index}}"></label>
     </div>
     <div class="note_item__content">
       <h3 class="note_item__title">{{title}}</h3>
@@ -68,7 +71,7 @@
           <span class="note_item__priority_indicator" style="width: calc( {{priority}} * 24px);"></span>
           <span class="sr-only">Pritority: {{priority}}</span>
         </div>
-        <div class="note_item__duedate">{{duedate}}</div>
+        <div class="note_item__duedate">{{formattedDate duedate}}</div>
       </div>
     </div>
     <a href="#" class="note_item__edit_toggle js-button-edit-item" data-id="{{@index}}">
