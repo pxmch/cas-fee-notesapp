@@ -103,6 +103,10 @@ $(function() {
       storeItems();
     }
 
+    self.setTestData = function () {
+      addTestData();
+    }
+
     function hasStorage() {
       try {
         localStorage.setItem('test-storage', 'test');
@@ -134,6 +138,37 @@ $(function() {
       refreshList();
     };
 
+    function addTestData() {
+      self.items.push(
+        {
+          "title": "Website erstellen",
+          "description": "Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.",
+          "priority": 3,
+          "duedate": 1465689600000,
+          "isDone": false,
+          "createdate": 1465765588923,
+          "finisheddate": 0
+        }, {
+          "title": "Blumentopf kaufen",
+          "description": "Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze Pangrams.",
+          "priority": 4,
+          "duedate": 1465776000000,
+          "isDone": false,
+          "createdate": 1465765593623,
+          "finisheddate": 0
+        }, {
+          "title": "Aufgabenliste programmieren",
+          "description": "Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze Pangrams.",
+          "priority": 5,
+          "duedate": 1465862400000,
+          "isDone": false,
+          "createdate": 1465765599365,
+          "finisheddate": 0
+        }
+      );
+      storeItems();
+    }
+
     function refreshList() {
       var source = $('#node_item_template').html();
       var template = Handlebars.compile(source);
@@ -156,6 +191,11 @@ $(function() {
 
 
   var TheNoteList = new NoteList();
+
+  // set test data if requested
+  if(window.location.search.indexOf('testdata=1') > -1) {
+    TheNoteList.setTestData();
+  }
 
   /* event handlers */
 
