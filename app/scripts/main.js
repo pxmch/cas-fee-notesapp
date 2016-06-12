@@ -2,6 +2,9 @@ $(function() {
   'use strict';
 
   Handlebars.registerHelper('formattedDate', function(data) {
+    if(data === 0) {
+      return '';
+    }
     var date = new Date(data);
     return getFormattedDate(date);
   });
@@ -44,6 +47,10 @@ $(function() {
     }
   }
 
+  function updateSortIndicators($current, order){
+    $('.js-sort-indicator').removeClass('fa-sort fa-sort-asc fa-sort-desc');
+    $current.find('.js-sort-indicator').addClass('fa-sort-'+order);
+  }
 
   function NoteList() {
 
@@ -78,27 +85,23 @@ $(function() {
     self.sortItems = function(field, order) {
       switch(field) {
         case 'duedate':
-          self.items.sort(sortByDueDate);
+          self.items.sort(function(a,b) {
+            return (order == 'asc') ? parseInt(a.duedate) - parseInt(b.duedate) : parseInt(b.duedate) - parseInt(a.duedate);
+          });
           break;
         case 'priority':
-          self.items.sort(sortByPriority);
+          self.items.sort(function(a,b) {
+            return (order == 'asc') ? a.priority - b.priority : b.priority - a.priority;
+          });
           break;
         case 'createdate':
-          self.items.sort(sortByCreateDate);
-      }
-      console.log(order);
-      if (order == 'desc') {
-        self.items.reverse();
+          self.items.sort(function(a,b) {
+            return (order == 'asc') ? parseInt(a.createdate) - parseInt(b.createdate) : parseInt(b.createdate) - parseInt(a.createdate);
+          });
+          break;
       }
       storeItems();
     }
-
-    function storeTestData() {
-      self.addItem(new Note('Website erstellen', 'Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.', 3, '2016-07-15'));
-      self.addItem(new Note('Blumentopf kaufen', 'Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze Pangrams.', 4, '2016-07-16'));
-      self.addItem(new Note('Aufgabenliste programmieren', 'Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze Pangrams.', 5, '2016-07-17'));
-      storeItems();
-    };
 
     function hasStorage() {
       try {
@@ -137,19 +140,6 @@ $(function() {
       $('.note_list').html(template(self.getItems()));
     };
 
-    function sortByCreateDate(a, b) {
-      return parseInt(a.createdate) - parseInt(b.createdate);
-    }
-
-    function sortByDueDate(a, b) {
-      return parseInt(a.duedate) - parseInt(b.duedate);
-    }
-
-    function sortByPriority(a, b) {
-      return parseInt(a.priority) - parseInt(b.priority);
-    }
-
-    //storeTestData();
     loadItems();
   }
 
@@ -157,11 +147,11 @@ $(function() {
     var self = this;
     self.title = title;
     self.description = description;
-    self.priority = priority;
-    self.duedate = duedate;
+    self.priority = (typeof priority != 'undefined' && !isNaN(priority)) ? priority : 0;;
+    self.duedate = (typeof duedate != 'undefined' && !isNaN(duedate)) ? duedate : 0;
     self.isDone = (typeof isDone != 'undefined') ? isDone : false;
-    self.createdate = new Date(Date.now());
-    self.finisheddate = null;
+    self.createdate = Date.now();
+    self.finisheddate = 0;
   }
 
 
@@ -183,12 +173,19 @@ $(function() {
 
   // save new/edited item
   $('.js-btn-item-save').on('click', function() {
-    var item = new Note(
-      $('#edit-title').val(),
-      $('#edit-description').val(),
-      $('input[name="edit-priority"]:checked').val(),
-      Date.parse($('#edit-duedate').val())
-    );
+    var title = $('#edit-title').val();
+    var description = $('#edit-description').val();
+    var priority = 0;
+    var duedate = 0;
+
+    if ($('input[name="edit-priority"]:checked').val()) {
+      priority = parseInt($('input[name="edit-priority"]:checked').val());
+    }
+    if($('#edit-duedate').val() !== ''){
+      duedate = Date.parse($('#edit-duedate').val())
+    }
+
+    var item = new Note(title, description, priority, duedate);
 
     if($('.edit-dialog').data('mode') == 'edit') {
       var index = $('.edit-dialog').data('index');
@@ -223,26 +220,33 @@ $(function() {
     $(this).toggleClass('desc');
     var order = $(this).hasClass('desc') ? 'desc' : 'asc';
     TheNoteList.sortItems('duedate', order);
+    updateSortIndicators($(this), order);
   });
   $('#js-sort-by-createdate').on('click', function() {
     $(this).toggleClass('desc');
     var order = $(this).hasClass('desc') ? 'desc' : 'asc';
     TheNoteList.sortItems('createdate', order);
+    updateSortIndicators($(this), order);
   });
   $('#js-sort-by-priority').on('click', function() {
     $(this).toggleClass('desc');
     var order = $(this).hasClass('desc') ? 'desc' : 'asc';
     TheNoteList.sortItems('priority', order);
+    updateSortIndicators($(this), order);
   });
 
   // edit item
   $('.note_list').on('click', '.js-button-edit-item',  function () {
     var index = $(this).data('id');
     var item = TheNoteList.getItem(index);
+
     $('#edit-title').val(item.title);
     $('#edit-description').val(item.description);
     $('input[name="edit-priority"][value="'+item.priority+'"]').prop('checked', true);
-    $('#edit-duedate').val(getFormattedDate(new Date(item.duedate)));
+
+    if(item.duedate !== 0) {
+      $('#edit-duedate').val(getFormattedDate(new Date(item.duedate)));
+    }
 
     $('#edit-menu-title').text('Edit note');
     toggleEditMask('show');
