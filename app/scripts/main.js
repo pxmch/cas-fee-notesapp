@@ -8,7 +8,7 @@ $(function() {
     var date = new Date(data);
     return getFormattedDate(date);
   });
-
+  
   function getFormattedDate(date){
     var d = date;
     var month = (d.getMonth() + 1);
@@ -183,8 +183,8 @@ $(function() {
     function refreshList() {
       var source = $('#node_item_template').html();
       var template = Handlebars.compile(source);
-      var itemsToDisplay = (self.showFinished) ? self.getItems() : self.getItems().filter(function(o){ return !o.isDone; });
-      $('.note_list').html(template(itemsToDisplay));
+      var displayList = { showFinished: self.showFinished, items: self.items}
+      $('.note_list').html(template(displayList));
     };
 
     loadItems();

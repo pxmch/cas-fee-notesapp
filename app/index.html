@@ -57,8 +57,8 @@
 </div>
 
 <script id="node_item_template" type="text/x-handlebars-template">​
-  {{#each this}}
-    <li class="note_item">
+  {{#each items}}
+  <li class="note_item {{#unless ../showFinished}}{{#if isDone}}note_item--done_hidden{{/if}}{{/unless}}">
       <div class="note_item__flag_done">
         <input type="checkbox" name="note-flag-done" id="note_item_flag_done_{{@index}}" class="js-item-flag-done" data-id="{{@index}}" value="finished" {{#if isDone}}checked{{/if}}>
         <label for="note_item_flag_done_{{@index}}"></label>
