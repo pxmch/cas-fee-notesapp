@@ -58,6 +58,7 @@ $(function() {
 
     var self = this;
     self.items = [];
+    self.showFinished = false;
 
     self.getItems = function(){
       return self.items;
@@ -81,6 +82,16 @@ $(function() {
       self.items.splice(index, 1);
       storeItems();
     };
+    self.deleteItems = function () {
+      self.items = [];
+      storeItems();
+    }
+
+    self.toggleShowFinished = function() {
+      self.showFinished = !self.showFinished;
+      refreshList();
+      return self.showFinished
+    }
 
     self.sortItems = function(field, order) {
       switch(field) {
@@ -172,7 +183,8 @@ $(function() {
     function refreshList() {
       var source = $('#node_item_template').html();
       var template = Handlebars.compile(source);
-      $('.note_list').html(template(self.getItems()));
+      var itemsToDisplay = (self.showFinished) ? self.getItems() : self.getItems().filter(function(o){ return !o.isDone; });
+      $('.note_list').html(template(itemsToDisplay));
     };
 
     loadItems();
@@ -195,6 +207,11 @@ $(function() {
   // set test data if requested
   if(window.location.search.indexOf('testdata=1') > -1) {
     TheNoteList.setTestData();
+  }
+
+  // delete data if requested
+  if(window.location.search.indexOf('deleteall=1') > -1) {
+    TheNoteList.deleteItems();
   }
 
   /* event handlers */
@@ -275,6 +292,12 @@ $(function() {
     updateSortIndicators($(this), order);
   });
 
+  // filter items
+  $('#js-filter-done').on('click', function() {
+    var icon = (TheNoteList.toggleShowFinished()) ? 'eye' : 'eye-slash';
+    $(this).find('.js-filter-done-indicator').removeClass('fa-eye fa-eye-slash').addClass('fa-'+icon);
+  });
+
   // edit item
   $('.note_list').on('click', '.js-button-edit-item',  function () {
     var index = $(this).data('id');
@@ -308,7 +331,7 @@ $(function() {
     var item = TheNoteList.getItem($(this).data('id'));
     if($(this).prop('checked')) {
       item.isDone = true;
-      item.finisheddate = new Date().now();
+      item.finisheddate = Date.now();
     }
     else {
       item.isDone = false;

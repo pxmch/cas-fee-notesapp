@@ -37,7 +37,7 @@
   </button>
 </header>
 
-<div class="filter-dialog">
+<div class="filter-dialog filter-dialog-open">
   <span>
 		<a id="js-sort-by-duedate" href="#" class="desc">by due date <i class="js-sort-indicator fa fa-sort" aria-hidden="true"></i></a>
 	</span>
@@ -48,7 +48,7 @@
 		<a id="js-sort-by-priority" href="#" class="desc">by importance <i class="js-sort-indicator fa fa-sort" aria-hidden="true"></i></a>
 	</span>
   <span>
-		show finished
+    <a id="js-filter-done" href="#">show finished <i class="js-filter-done-indicator fa fa-eye-slash" aria-hidden="true"></i></a>
 	</span>
     <span>
       <a href="#" class="style-toggle">
@@ -58,26 +58,26 @@
 
 <script id="node_item_template" type="text/x-handlebars-template">​
   {{#each this}}
-  <li class="note_item">
-    <div class="note_item__flag_done">
-      <input type="checkbox" name="note-flag-done" id="note_item_flag_done_{{@index}}" class="js-item-flag-done" data-id="{{@index}}" value="finished" {{#if isDone}}checked{{/if}}>
-      <label for="note_item_flag_done_{{@index}}"></label>
-    </div>
-    <div class="note_item__content">
-      <h3 class="note_item__title">{{title}}</h3>
-      <div class="note_item__description">{{description}}</div>
-      <div class="note_item__meta">
-        <div class="note_item__priority">
-          <span class="note_item__priority_indicator" style="width: calc( {{priority}} * 24px);"></span>
-          <span class="sr-only">Pritority: {{priority}}</span>
-        </div>
-        <div class="note_item__duedate">{{formattedDate duedate}}</div>
+    <li class="note_item">
+      <div class="note_item__flag_done">
+        <input type="checkbox" name="note-flag-done" id="note_item_flag_done_{{@index}}" class="js-item-flag-done" data-id="{{@index}}" value="finished" {{#if isDone}}checked{{/if}}>
+        <label for="note_item_flag_done_{{@index}}"></label>
       </div>
-    </div>
-    <a href="#" class="note_item__edit_toggle js-button-edit-item" data-id="{{@index}}">
-      <i class="fa fa-pencil" aria-hidden="true"></i><span class="sr-only">Edit this note</span>
-    </a>
-  </li>
+      <div class="note_item__content">
+        <h3 class="note_item__title">{{title}}</h3>
+        <div class="note_item__description">{{description}}</div>
+        <div class="note_item__meta">
+          <div class="note_item__priority">
+            <span class="note_item__priority_indicator" style="width: calc( {{priority}} * 24px);"></span>
+            <span class="sr-only">Pritority: {{priority}}</span>
+          </div>
+          <div class="note_item__duedate">{{formattedDate duedate}}</div>
+        </div>
+      </div>
+      <a href="#" class="note_item__edit_toggle js-button-edit-item" data-id="{{@index}}">
+        <i class="fa fa-pencil" aria-hidden="true"></i><span class="sr-only">Edit this note</span>
+      </a>
+    </li>
   {{/each}}
 </script>
 
