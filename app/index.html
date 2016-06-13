@@ -65,7 +65,8 @@
             <span class="note_item__priority_indicator" style="width: calc( {{priority}} * 24px);"></span>
             <span class="sr-only">Pritority: {{priority}}</span>
           </div>
-          <div class="note_item__duedate">{{formattedDate duedate}}</div>
+          <div class="note_item__duedate">Due: {{formattedDate duedate}}</div>
+          {{#if isDone}}<div class="note_item__finisheddate">Done: {{formattedDate finisheddate}}</div>{{/if}}
         </div>
       </div>
       <a href="#" class="note_item__edit_toggle js-button-edit-item" data-id="{{@index}}">
