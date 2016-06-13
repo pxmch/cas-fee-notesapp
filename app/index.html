@@ -2,12 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NotesApp</title>
-
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <!-- Place favicon.ico in the root directory -->
 
   <!-- build:css styles/vendor.css -->
   <!-- bower:css -->
@@ -21,44 +18,41 @@
 </head>
 <body>
 
-<header class="title-header">
-  <button class="toolbar--btn">
-    <a href="#" class="menu-toggle">
-      <i class="fa fa-bars" aria-hidden="true"></i></a>
-  </button>
-
-	<span class="menu-title">
-		Memo App
-	</span>
-
-  <button class="note--btn">
-    <a href="#" class="edit-toggle js-button-add-item">
-      <i class="fa fa-plus" aria-hidden="true"></i></a>
-  </button>
+<!-- APP HEADER -->
+<header class="app-header">
+  <h1 class="app-header__title">Notes App</h1>
+  <nav class="main-nav">
+    <ul class="l-navi-list">
+      <li>
+        <a href="#" class="main-nav__button js-style-toggle">
+          <i class="fa fa-paint-brush" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="main-nav__button js-button-add-item">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </header>
 
-<div class="filter-dialog filter-dialog-open">
-  <span>
-		<a id="js-sort-by-duedate" href="#" class="desc">by due date <i class="js-sort-indicator fa fa-sort" aria-hidden="true"></i></a>
-	</span>
-  <span>
-		<a id="js-sort-by-createdate" href="#" class="desc">by date created <i class="js-sort-indicator fa fa-sort" aria-hidden="true"></i></a>
-	</span>
-  <span>
-		<a id="js-sort-by-priority" href="#" class="desc">by importance <i class="js-sort-indicator fa fa-sort" aria-hidden="true"></i></a>
-	</span>
-  <span>
-    <a id="js-filter-done" href="#">show finished <i class="js-filter-done-indicator fa fa-eye-slash" aria-hidden="true"></i></a>
-	</span>
-    <span>
-      <a href="#" class="style-toggle">
-        <i class="fa fa-paint-brush" aria-hidden="true"></i></a>
-	</span>
-</div>
+<!-- TOOLBAR -->
+<nav class="app-toolbar">
+  <ul class="l-navi-list app-toolbar__sorter">
+    <li><a id="js-sort-by-duedate" href="#" class="desc">due date <i class="js-sort-indicator fa fa-sort" aria-hidden="true"></i></a></li>
+    <li><a id="js-sort-by-createdate" href="#" class="desc">date created <i class="js-sort-indicator fa fa-sort" aria-hidden="true"></i></a></li>
+    <li><a id="js-sort-by-priority" href="#" class="desc">importance <i class="js-sort-indicator fa fa-sort" aria-hidden="true"></i></a></li>
+  </ul>
+  <ul class="l-navi-list app-toolbar__filter">
+    <li><a id="js-filter-done" href="#"><i class="js-filter-done-indicator fa fa-eye-slash" aria-hidden="true"></i> show finished</a></li>
+  </ul>
+</nav>
 
-<script id="node_item_template" type="text/x-handlebars-template">​
+<!-- THE LIST -->
+<script id="node_item_template" type="text/x-handlebars-template">
   {{#each items}}
-  <li class="note_item {{#unless ../showFinished}}{{#if isDone}}note_item--done_hidden{{/if}}{{/unless}}">
+    <li class="note_item {{#unless ../showFinished}}{{#if isDone}}note_item--done_hidden{{/if}}{{/unless}}">
       <div class="note_item__flag_done">
         <input type="checkbox" name="note-flag-done" id="note_item_flag_done_{{@index}}" class="js-item-flag-done" data-id="{{@index}}" value="finished" {{#if isDone}}checked{{/if}}>
         <label for="note_item_flag_done_{{@index}}"></label>
@@ -80,13 +74,12 @@
     </li>
   {{/each}}
 </script>
-
 <ul class="note_list"></ul>
 
-<!-- edit mask -->
+<!-- EDIT MASK -->
 <div class="edit-dialog">
   <form id="edit-mask" class="edit-mask">
-    <header class="title-header">
+    <header class="edit-mask-header">
       <button type="button" name="edit-cancel" aria-label="Cancel" class="btn-action btn-action-secondary edit-toggle js-button-item-cancel"><i class="fa fa-times-circle-o" aria-hidden="true"></i></button>
       <span id="edit-menu-title" class="menu-title">Edit note</span>
       <button type="button" name="edit-submit" class="btn-action btn-action-primary js-btn-item-save">Save</button>

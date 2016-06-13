@@ -8,7 +8,7 @@ $(function() {
     var date = new Date(data);
     return getFormattedDate(date);
   });
-  
+
   function getFormattedDate(date){
     var d = date;
     var month = (d.getMonth() + 1);
@@ -48,8 +48,9 @@ $(function() {
   }
 
   function updateSortIndicators($current, order){
-    $('.js-sort-indicator').removeClass('fa-sort fa-sort-asc fa-sort-desc');
-    $current.find('.js-sort-indicator').addClass('fa-sort-'+order);
+    $('.js-sort-indicator').removeClass('fa-sort fa-sort-asc fa-sort-desc').parent().removeClass('active');
+    $current.find('.js-sort-indicator').addClass('fa-sort-'+order).parent().addClass('active');
+
   }
 
   function NoteList() {
@@ -317,13 +318,8 @@ $(function() {
   });
 
   // style toggle
-  $('.style-toggle').on('click', function() {
+  $('.js-style-toggle').on('click', function() {
     $('body').toggleClass('style-change');
-  });
-
-  // menu toggle
-  $('.menu-toggle').on('click', function() {
-    $('.filter-dialog').toggleClass('filter-dialog-open');
   });
 
   // handle item checkbox

@@ -1,4 +1,3 @@
-@import 'colors';
 
 .edit-dialog {
   display: block;
@@ -43,9 +42,16 @@
   }
 }
 
-.edit-mask-header-title {
-  display: inline-block;
-  margin: 0;
+.edit-mask-header {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 1rem;
+  font-size: 1.25em;
+  background-color: $color-700;
+  color: $primary-color;
 }
 
 .btn-action {
