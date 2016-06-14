@@ -37,7 +37,6 @@
 
 .app-toolbar__sorter,
 .app-toolbar__filter {
-
   li a {
     display: block;
     padding: 1.125rem 0.5rem 1rem 0.5rem;
@@ -57,7 +56,6 @@
 }
 
 .app-toolbar__sorter {
-
   li a {
     position: relative;
   }
@@ -75,3 +73,17 @@
   }
 }
 
+@media all and (max-width: 640px) {
+  .app-toolbar {
+    padding: 0 0.5rem;
+    flex-direction: column;
+
+  }
+  .app-toolbar__sorter {
+    li a {
+      margin-right: 0.667rem;
+      padding: 1rem 0.5rem;
+      letter-spacing: -1px;
+    }
+  }
+}

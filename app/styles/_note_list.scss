@@ -10,6 +10,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+  min-height: 4rem;
   margin: 0 0 0.5rem 0;
   padding: 1.5rem;
   background: #FFF;
@@ -60,10 +61,29 @@
 }
 
 .note_item__description {
+  position: relative;
+  display: block;
   width: 75%;
+  max-height: 2.5rem;
+  overflow: hidden;
   float: left;
   font-size: 1rem;
   line-height: 1.25;
+}
+
+.note_item__description--expanded {
+  max-height: none;
+  overflow: visible;
+}
+
+.note_item__description-wrapper {
+  padding-right: 1rem;
+}
+
+.note_item__description-more {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .note_item__meta {
@@ -107,10 +127,14 @@
     float: none;
   }
 
+  .note_item__description {
+    max-height: 5rem;
+    hyphens: auto;
+  }
+
   .note_item__meta {
     margin-top: 0.5rem;
     position: relative;
     text-align: left;
   }
-
 }

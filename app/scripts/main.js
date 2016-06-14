@@ -1,6 +1,8 @@
 $(function() {
   'use strict';
 
+  var resizeTimer;
+
   Handlebars.registerHelper('formattedDate', function(data) {
     if(data === 0) {
       return '';
@@ -8,6 +10,15 @@ $(function() {
     var date = new Date(data);
     return getFormattedDate(date);
   });
+
+  function initDescriptionMoreLinks(){
+    $('.js-note_item__description').each(function(){
+      if ($(this).height() < $(this).find('.note_item__description-wrapper').height()) {
+        $(this).append('<span class="note_item__description-more"><i class="fa fa-plus-square-o" aria-hidden="true"></span>');
+      }
+    });
+    console.log('init');
+  }
 
   function getFormattedDate(date){
     var d = date;
@@ -186,6 +197,7 @@ $(function() {
       var template = Handlebars.compile(source);
       var displayList = { showFinished: self.showFinished, items: self.items}
       $('.note_list').html(template(displayList));
+      initDescriptionMoreLinks();
     };
 
     loadItems();
@@ -202,8 +214,12 @@ $(function() {
     self.finisheddate = 0;
   }
 
+  /* ------------------------------------------------------- */
+  /* "MAIN" */
 
   var TheNoteList = new NoteList();
+
+  initDescriptionMoreLinks();
 
   // set test data if requested
   if(window.location.search.indexOf('testdata=1') > -1) {
@@ -214,6 +230,8 @@ $(function() {
   if(window.location.search.indexOf('deleteall=1') > -1) {
     TheNoteList.deleteItems();
   }
+
+  /* ------------------------------------------------------- */
 
   /* event handlers */
 
@@ -334,6 +352,22 @@ $(function() {
       item.finisheddate = null;
     }
     TheNoteList.replaceItem($(this).data('id'), item);
+  });
+
+  // handle description overflow
+  $('.note_list').on('click', '.js-note_item__description', function() {
+    console.log('a');
+    $(this).toggleClass('note_item__description--expanded');
+
+    var $more = $(this).find('.note_item__description-more .fa');
+    $more.removeClass('fa-plus-square-o fa-minus-square-o');
+    $more.addClass(($(this).hasClass('note_item__description--expanded')) ? 'fa-minus-square-o' : 'fa-plus-square-o');
+  });
+  $(window).on('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      initDescriptionMoreLinks();
+    }, 200);
   });
 
 });
