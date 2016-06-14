@@ -132,6 +132,11 @@
     hyphens: auto;
   }
 
+  .note_item__description--expanded {
+    max-height: none;
+    overflow: visible;
+  }
+
   .note_item__meta {
     margin-top: 0.5rem;
     position: relative;

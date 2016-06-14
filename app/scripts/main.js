@@ -334,6 +334,11 @@ $(function() {
     toggleEditMask('show');
     $('.edit-dialog').data('mode', 'edit').data('index', index);
   });
+  
+  // menu toggle
+  $('.js-menu-toggle').on('click', function() {
+    $('.app-toolbar').toggleClass('app-toolbar--hidden');
+  });
 
   // style toggle
   $('.js-style-toggle').on('click', function() {

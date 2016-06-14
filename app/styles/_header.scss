@@ -11,6 +11,15 @@
   color: $primary-color;
 }
 
+.app-header__hamburger {
+  display: none;
+  color: rgba(255, 255, 255, 0.7);
+
+  &:hover {
+    color: rgba(255, 255, 255, 1);
+  }
+}
+
 .app-header__title {
   display: block;
   margin: 1rem 0;
@@ -25,9 +34,13 @@
 }
 
 .main-nav__button {
-  margin-left: 3rem;
+  margin: 0 0 0 2rem;
   font-size: 1.5rem;
   line-height: 1;
+}
+
+.main-nav__button--single {
+  margin: 0;
 }
 
 .app-toolbar {
@@ -40,7 +53,7 @@
   li a {
     display: block;
     padding: 1.125rem 0.5rem 1rem 0.5rem;
-    margin: 0 2rem 0 -0.5rem;
+    margin: 0 1.5rem 0 -0.5rem;
     font-size: 1rem;
     line-height: 1;
     text-align: left;
@@ -55,7 +68,17 @@
   }
 }
 
+.app-toolbar__sorter-title {
+  margin-right: 1rem;
+  font-size: 1rem;
+}
+
+.app-toolbar__sorter-list {
+}
+
 .app-toolbar__sorter {
+  display: flex;
+
   li a {
     position: relative;
   }
@@ -74,16 +97,31 @@
 }
 
 @media all and (max-width: 640px) {
-  .app-toolbar {
-    padding: 0 0.5rem;
-    flex-direction: column;
-
+  .app-header__hamburger {
+    display: block;
   }
+
+  .app-header__title {
+    margin-left: 1rem;
+    flex-grow: 2;
+  }
+
+  .app-toolbar {
+    align-items: flex-start;
+    font-family: "Roboto Condensed", sans-serif;
+  }
+
+  .app-toolbar--hidden {
+    display: none;
+  }
+
   .app-toolbar__sorter {
-    li a {
-      margin-right: 0.667rem;
-      padding: 1rem 0.5rem;
-      letter-spacing: -1px;
+    flex-direction: column;
+  }
+
+  .app-toolbar__sorter-list {
+    li {
+      float: none;
     }
   }
 }

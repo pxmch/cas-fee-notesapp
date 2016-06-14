@@ -49,7 +49,7 @@
   align-items: baseline;
   justify-content: space-between;
   padding: 1rem;
-  font-size: 1.25em;
+  font-size: 1.25rem;
   background-color: $color-700;
   color: $primary-color;
 }
@@ -58,6 +58,13 @@
   border: none;
   color: #FFF;
   background-color: transparent;
+  text-transform: uppercase;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-action-cancel .fa {
+  font-size: 1.5rem;
 }
 
 .edit-mask {
@@ -93,7 +100,7 @@
   }
 
   textarea {
-    height: 4rem;
+    height: 7rem;
   }
 
   .field-date {
@@ -157,6 +164,16 @@
 .btn-quick-date {
   border: none;
   background-color: transparent;
+  text-transform: uppercase;
+  color: $color-800;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .edit-mask-delete-button {

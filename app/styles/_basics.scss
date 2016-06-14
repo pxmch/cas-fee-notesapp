@@ -6,7 +6,7 @@ body {
   min-width: 320px;
 
   &.style-change {
-    background: darken($background-color, 10%);
+    background-color: $color-900;
     color: lighten($primary-color, 10%)
   }
 }
