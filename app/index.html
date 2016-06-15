@@ -69,7 +69,7 @@
             <span class="note_item__priority_indicator" style="width: calc( {{priority}} * 24px);"></span>
             <span class="sr-only">Pritority: {{priority}}</span>
           </div>
-          <div class="note_item__duedate">Due: {{formattedDate duedate}}</div>
+          {{#if duedate}}<div class="note_item__duedate">Due: {{formattedDate duedate}}</div>{{/if}}
           {{#if isDone}}<div class="note_item__finisheddate">Done: {{formattedDate finisheddate}}</div>{{/if}}
         </div>
       </div>

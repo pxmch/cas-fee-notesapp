@@ -17,7 +17,6 @@ $(function() {
         $(this).append('<span class="note_item__description-more"><i class="fa fa-plus-square-o" aria-hidden="true"></span>');
       }
     });
-    console.log('init');
   }
 
   function getFormattedDate(date){
@@ -334,7 +333,7 @@ $(function() {
     toggleEditMask('show');
     $('.edit-dialog').data('mode', 'edit').data('index', index);
   });
-  
+
   // menu toggle
   $('.js-menu-toggle').on('click', function() {
     $('.app-toolbar').toggleClass('app-toolbar--hidden');
