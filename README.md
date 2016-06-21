@@ -1,7 +1,7 @@
 # NotesApp
-HSR CAS Front End Engineering 2016
-Project assignment 1
-Team 9, Isa Steiner, Patrick Bonetti
+HSR CAS Front End Engineering 2016  
+Project assignment 1  
+Team 9, Isa Steiner, Patrick Bonetti  
 
 
 ![screenshot of the app](screenshot.png "screenshot of the app")
