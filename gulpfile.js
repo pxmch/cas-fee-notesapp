@@ -47,6 +47,7 @@ gulp.task('lint', () => {
   })
     .pipe(gulp.dest('app/scripts'));
 });
+
 gulp.task('lint:test', () => {
   return lint('test/spec/**/*.js', {
     fix: true,
@@ -164,10 +165,17 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
+// start task for npm postinstall
+gulp.task('start', ['build'], () => {
+  gulp.start('serve:dist');
+});
+
+// build task - generates dist
 gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
+// default task
 gulp.task('default', ['clean'], () => {
   gulp.start('build');
 });

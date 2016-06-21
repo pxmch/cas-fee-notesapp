@@ -33,6 +33,10 @@
     "phantomjs-prebuilt": "^2.1.7",
     "wiredep": "^2.2.2"
   },
+  "scripts": {
+    "postinstall" : "bower install",
+    "start": "gulp start"
+  },
   "eslintConfig": {
     "env": {
       "es6": true,

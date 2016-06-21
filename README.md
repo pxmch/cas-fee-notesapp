@@ -1,23 +1,26 @@
 # NotesApp
-Projektarbeit 1 von Team 9 für HSR CAS Front End Engineering 2016
+HSR CAS Front End Engineering 2016
+Project assignment 1
+Team 9, Isa Steiner, Patrick Bonetti
+
+
+![screenshot of the app](screenshot.png "screenshot of the app")
+
+
+## Installation
+Just check out the git repo and run `npm install` in the root directory of the app.
+
 
 ## Credits
+This app is written in Javascript (client and server) and uses [Node.js](https://nodejs.org/) with
+[Express](http://expressjs.com) on the server-side. 
 
-### Scaffolding
-Initial setup of this web app generated with [Yeoman Web App Generator](https://github.com/yeoman/generator-webapp#readme)
+Used components in alphabetical order:
+- [Bower](https://bower.io)
+- [Font Awesome](http://fontawesome.io)
+- [Gulp](http://gulpjs.com) 
+- [Handlebars](http://handlebarsjs.com)
+- [jQuery](https://jquery.com)
+- [Normalize.css](https://necolas.github.io/normalize.css/)
 
-### Favicon und App-Icon
-[Office and Business Icon Pack](https://www.smashingmagazine.com/2015/10/freebie-office-business-icon-pack-ai-eps-psd-pdf-svg/) by Manuela Langella 
-
-### Development
-
-```
-npm install
-bower install
-gulp serve
-```
-
-### Git
-git commit -a -m "comment"
-git pull
-git push
+The initial setup of this app is based on a boilerplate generated with [Yeoman Web App Generator](https://github.com/yeoman/generator-webapp#readme)
