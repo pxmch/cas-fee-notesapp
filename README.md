@@ -15,7 +15,7 @@ Just check out the git repo and run `npm install` in the root directory of the a
 This app is written in Javascript (client and server) and uses [Node.js](https://nodejs.org/) with
 [Express](http://expressjs.com) on the server-side. 
 
-Used components in alphabetical order:
+Other used components in alphabetical order:
 - [Bower](https://bower.io)
 - [Font Awesome](http://fontawesome.io)
 - [Gulp](http://gulpjs.com) 
