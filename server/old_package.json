@@ -1,0 +1,10 @@
+{
+  "name": "note-api",
+  "main": "server.js",
+  "dependencies": {
+    "express": "~4.0.0",
+    "nedb": "^1.8.0",
+    "method-override": "^2.3.3",
+    "body-parser": "~1.0.1"
+  }
+}
