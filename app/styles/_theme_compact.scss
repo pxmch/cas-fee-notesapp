@@ -1,0 +1,96 @@
+.theme-compact {
+  background-color: #e7e7e7;
+
+  @media all and (min-width: 480px) {
+
+    .note_list {
+      margin: 0.5rem;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      font-family: "Roboto Condensed", sans-serif;
+    }
+
+    .note_item {
+      position: relative;
+      width: calc(50% - 3rem);
+      min-height: 10rem;
+      padding: 1rem;
+      margin: 0.5rem 0.5rem;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-content: space-between;
+    }
+
+    .note_item__flag_done {
+      order: 2;
+    }
+
+    .note_item__content {
+      order: 1;
+      position: static;
+      width: 100%;
+      margin: 0;
+    }
+
+    .note_item__title {
+      width: 100%;
+      float: none;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+
+    .note_item__description {
+      display: none;
+    }
+
+    .note_item__meta {
+      position: absolute;
+      top: auto;
+      right: 1rem;
+      bottom: 1.5rem;
+      opacity: 0.3;
+    }
+
+    .note_item__priority_indicator {
+      display: none;
+    }
+
+    .note_item__priority_number {
+      display: block;
+      text-align: right;
+      margin-right: -0.3125rem;
+      padding-right: 1.25rem;
+      background: url('data:image/svg+xml;utf8,<svg fill="#000" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>') no-repeat center right;
+    }
+
+    .note_item__duedate {
+      margin-top: 0;
+      font-size: 0.875rem;
+    }
+
+    .note_item__finisheddate {
+      font-size: 0.875rem;
+    }
+
+    .note_item__edit_toggle {
+      order: 2;
+      margin-left: 1rem;
+    }
+  }
+
+  @media all and (min-width: 696px) {
+    .note_item {
+      width: calc(33% - 3rem);
+    }
+  }
+
+  @media all and (min-width: 960px) {
+    .note_item {
+      width: calc(25% - 3rem);
+    }
+  }
+
+}
+
+

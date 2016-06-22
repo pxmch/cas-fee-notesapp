@@ -341,7 +341,7 @@ $(function() {
 
   // style toggle
   $('.js-style-toggle').on('click', function() {
-    $('body').toggleClass('style-change');
+    $('body').toggleClass('theme-compact');
   });
 
   // handle item checkbox
@@ -360,7 +360,6 @@ $(function() {
 
   // handle description overflow
   $('.note_list').on('click', '.js-note_item__description', function() {
-    console.log('a');
     $(this).toggleClass('note_item__description--expanded');
 
     var $more = $(this).find('.note_item__description-more .fa');

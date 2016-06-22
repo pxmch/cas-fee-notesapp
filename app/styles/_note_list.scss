@@ -56,7 +56,7 @@
   float: left;
   margin: 0 0 0.25rem 0;
   font-size: 1.5rem;
-  line-height: 1.5;
+  line-height: 1.25;
   font-weight: normal;
 }
 
@@ -98,6 +98,10 @@
   width: 0;  // adjusted by javascript (= priority * 24px)
   height: 24px;
   background: url('data:image/svg+xml;utf8,<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>') repeat-x center right;
+}
+
+.note_item__priority_number {
+  display: none;
 }
 
 .note_item__duedate {
