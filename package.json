@@ -37,6 +37,10 @@
     "method-override": "^2.3.3",
     "body-parser": "~1.0.1"
   },
+  "scripts": {
+    "postinstall" : "bower install",
+    "start": "gulp start"
+  },
   "eslintConfig": {
     "env": {
       "es6": true,
