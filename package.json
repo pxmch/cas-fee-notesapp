@@ -1,4 +1,6 @@
 {
+  "name": "NotesApp",
+  "version": "0.1.0",
   "private": true,
   "engines": {
     "node": ">=4"
@@ -39,7 +41,7 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "start": "gulp start"
+    "start": "node server/server.js"
   },
   "eslintConfig": {
     "env": {
