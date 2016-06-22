@@ -25,9 +25,8 @@ app.use(require("method-override")(function(req, res){
 app.use(require('./routes/routes.js'));
 app.use(express.static(__dirname + '/public'));
 
-const hostname = '127.0.0.1.';
+const hostname = '127.0.0.1';
 const port = 3001;
 
 app.listen(port, hostname);
 console.log('Listening on port ' + port + ' on ' + hostname);
-
