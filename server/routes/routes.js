@@ -9,7 +9,7 @@ var notes = require('../controller/notes.js');
 //query by calling: http://localhost:3001/notes
 router.get("/all", notes.getNotes);
 
-router.post("/note/:id", notes.createNote);
+router.post("/note", notes.createNote);
 
 //query by calling: http://localhost:3001/note/ (add some existing id see ../storage/notes.db)
 router.get("/note/:id", notes.showNote);
