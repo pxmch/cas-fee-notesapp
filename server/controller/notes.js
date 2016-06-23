@@ -77,6 +77,9 @@ module.exports.updateNote = function (req, res) {
 
   //console.log("duedate: "+req.params.duedate);
 
+  res.type("application/json");
+  res.header("Access-Control-Allow-Origin", "*");
+
   store.update(req.params.id, req.params.title, req.params.description,
     req.params.priority, req.params.duedate, req.params.isdone,
     function (err, note) {
@@ -100,12 +103,13 @@ module.exports.createNote = function (req, res) {
 
   //ruft funktion add im notesStorage auf
   //console.log("req = "+JSON.stringify(req.body));
+  res.type("application/json");
+  res.header("Access-Control-Allow-Origin", "*");
 
 
   store.add(req.body.title, req.body.description, req.body.priority,
     req.body.duedate, req.body.isdone, function (err, note, status) {
 
-      res.type('application/json');
       res.write("[");
       res.write("{");
       res.write("\"_id\":");
@@ -126,9 +130,11 @@ module.exports.createNote = function (req, res) {
 };
 
 module.exports.showNote = function (req, res) {
+
+  res.type("application/json");
+  res.header("Access-Control-Allow-Origin", "*");
   //ruft funktion get im notesStorage auf
   store.get(req.params.id, function (err, note) {
-    res.type("application/json");
     res.write("[");
     res.write("{");
     res.write("\"_id\":")
