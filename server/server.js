@@ -12,7 +12,6 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
 app.use(require("method-override")(function(req, res){
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
         var method = req.body._method;
@@ -20,7 +19,6 @@ app.use(require("method-override")(function(req, res){
         return method;
     }
 }));
-
 
 app.use(require('./routes/routes.js'));
 app.use(express.static(__dirname + '/public'));

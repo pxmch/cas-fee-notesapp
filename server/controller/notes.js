@@ -72,7 +72,7 @@ module.exports.getNotes = function (req, res) {
 
 module.exports.updateNote = function (req, res) {
 
-    console.log("duedate: "+req.params.duedate);
+    //console.log("duedate: "+req.params.duedate);
 
     store.update(req.params.id, req.params.title, req.params.description,
         req.params.priority, req.params.duedate, req.params.isdone,
@@ -96,10 +96,11 @@ module.exports.updateNote = function (req, res) {
 module.exports.createNote = function (req, res) {
 
     //ruft funktion add im notesStorage auf
-    console.log("isdone in notes = " + req.params.isdone)
+    console.log(req.params);
 
-    store.add(req.params.title, req.params.description, req.params.priority,
-        req.params.duedate, req.params.isdone, function (err, note, status) {
+
+    store.add(req.body.title, req.body.description, req.body.priority,
+        req.body.duedate, req.body.isdone, function (err, note, status) {
 
             res.type('application/json');
             res.write("[");
@@ -188,3 +189,5 @@ module.exports.deleteNote = function (req, res) {
         res.end("</html>");
     });
 };
+
+
