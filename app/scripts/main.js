@@ -1,6 +1,9 @@
 $(function() {
   'use strict';
 
+  const THEME_COOKIE_NAME = 'theme';
+  const THEME_CLASS_NAME  = 'theme-compact';
+
   var resizeTimer;
 
   Handlebars.registerHelper('formattedDate', function(data) {
@@ -10,6 +13,12 @@ $(function() {
     var date = new Date(data);
     return getFormattedDate(date);
   });
+
+  function initTheme(){
+    if(getCookie(THEME_COOKIE_NAME) === THEME_CLASS_NAME) {
+      $('body').addClass(THEME_CLASS_NAME);
+    };
+  }
 
   function initDescriptionMoreLinks(){
     $('.js-note_item__description').each(function(){
@@ -61,6 +70,21 @@ $(function() {
     $('.js-sort-indicator').removeClass('fa-sort fa-sort-asc fa-sort-desc').parent().removeClass('active');
     $current.find('.js-sort-indicator').addClass('fa-sort-'+order).parent().addClass('active');
 
+  }
+
+  function setCookie (name, value, expiry){
+    document.cookie = name + "=" + encodeURIComponent(value) +
+      "; max-age=" + 60 * 60 * 24 * expiry +
+      "; path=/";
+  }
+
+  function getCookie (name){
+    var cookies = document.cookie ;
+    if (cookies.length != 0) {
+      var val = cookies.match('(^|;)[\s]*' + name + '=([^;]*)');
+      return decodeURIComponent ( val[2] ) ;
+    }
+    return '' ;
   }
 
   function NoteList() {
@@ -218,6 +242,7 @@ $(function() {
 
   var TheNoteList = new NoteList();
 
+  initTheme();
   initDescriptionMoreLinks();
 
   // set test data if requested
@@ -341,7 +366,9 @@ $(function() {
 
   // style toggle
   $('.js-style-toggle').on('click', function() {
-    $('body').toggleClass('theme-compact');
+    $('body').toggleClass(THEME_CLASS_NAME);
+    var cval = $('body').hasClass(THEME_CLASS_NAME) ? THEME_CLASS_NAME : 'default';
+    setCookie(THEME_COOKIE_NAME, cval, 30);
   });
 
   // handle item checkbox
