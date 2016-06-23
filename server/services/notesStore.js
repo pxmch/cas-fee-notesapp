@@ -3,7 +3,7 @@
  */
 
 var Datastore = require('nedb');
-var db = new Datastore({filename: './storage/notes.db', autoload: true});
+var db = new Datastore({filename: 'server/storage/notes.db', autoload: true});
 
 
 function Note(title, description, priority, duedate, isdone) {

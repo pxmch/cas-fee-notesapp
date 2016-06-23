@@ -73,9 +73,9 @@ $(function() {
   }
 
   function setCookie (name, value, expiry){
-    document.cookie = name + "=" + encodeURIComponent(value) +
-      "; max-age=" + 60 * 60 * 24 * expiry +
-      "; path=/";
+    document.cookie = name + '=' + encodeURIComponent(value) +
+      '; max-age=' + 60 * 60 * 24 * expiry +
+      '; path=/';
   }
 
   function getCookie (name){
