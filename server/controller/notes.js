@@ -4,7 +4,7 @@ module.exports.getNotes = function (req, res) {
 
   store.all(function (err, notes) {
 
-    //res.type("application/json");
+    res.type("application/json");
     res.header("Access-Control-Allow-Origin", "*");
 
     res.write("[");
