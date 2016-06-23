@@ -79,10 +79,12 @@ $(function() {
   }
 
   function getCookie (name){
-    var cookies = document.cookie ;
-    if (cookies.length != 0) {
+    var cookies = document.cookie;
+    if (cookies && cookies.length != 0) {
       var val = cookies.match('(^|;)[\s]*' + name + '=([^;]*)');
-      return decodeURIComponent ( val[2] ) ;
+      if (val && val[2]) {
+        return decodeURIComponent(val[2]);
+      }
     }
     return '' ;
   }
@@ -90,6 +92,7 @@ $(function() {
   function NoteList() {
 
     const STORAGE_KEY = 'note-items';
+    const SERVER = 'http://127.0.0.1:3001';
 
     var self = this;
     self.items = [];
@@ -149,10 +152,6 @@ $(function() {
       storeItems();
     }
 
-    self.setTestData = function () {
-      addTestData();
-    }
-
     function hasStorage() {
       try {
         localStorage.setItem('test-storage', 'test');
@@ -162,9 +161,16 @@ $(function() {
       catch (exception) {
         return false;
       }
-    };
+    }
 
     function loadItems() {
+
+      $.get( SERVER+'/all', function( data ) {
+        self.items = data;
+        refreshList();
+      });
+
+      /*
       if (!hasStorage()){
         alert('No local storage available.');
         return;
@@ -173,7 +179,9 @@ $(function() {
         self.items = JSON.parse(localStorage.getItem(STORAGE_KEY));
         refreshList();
       }
-    };
+      */
+
+    }
 
     function storeItems() {
       if (!hasStorage()){
@@ -182,37 +190,6 @@ $(function() {
       }
       localStorage.setItem(STORAGE_KEY, JSON.stringify(self.items));
       refreshList();
-    };
-
-    function addTestData() {
-      self.items.push(
-        {
-          'title': 'Website erstellen',
-          'description': 'Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.',
-          'priority': 3,
-          'duedate': 1465689600000,
-          'isDone': false,
-          'createdate': 1465765588923,
-          'finisheddate': 0
-        }, {
-          'title': 'Blumentopf kaufen',
-          'description': 'Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze Pangrams.',
-          'priority': 4,
-          'duedate': 1465776000000,
-          'isDone': false,
-          'createdate': 1465765593623,
-          'finisheddate': 0
-        }, {
-          'title': 'Aufgabenliste programmieren',
-          'description': 'Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze Pangrams.',
-          'priority': 5,
-          'duedate': 1465862400000,
-          'isDone': false,
-          'createdate': 1465765599365,
-          'finisheddate': 0
-        }
-      );
-      storeItems();
     }
 
     function refreshList() {
@@ -234,7 +211,7 @@ $(function() {
     self.duedate = (typeof duedate != 'undefined' && !isNaN(duedate)) ? duedate : 0;
     self.isDone = (typeof isDone != 'undefined') ? isDone : false;
     self.createdate = Date.now();
-    self.finisheddate = 0;
+    self.finishdate = 0;
   }
 
   /* ------------------------------------------------------- */
@@ -244,16 +221,6 @@ $(function() {
 
   initTheme();
   initDescriptionMoreLinks();
-
-  // set test data if requested
-  if(window.location.search.indexOf('testdata=1') > -1) {
-    TheNoteList.setTestData();
-  }
-
-  // delete data if requested
-  if(window.location.search.indexOf('deleteall=1') > -1) {
-    TheNoteList.deleteItems();
-  }
 
   /* ------------------------------------------------------- */
 
@@ -376,11 +343,11 @@ $(function() {
     var item = TheNoteList.getItem($(this).data('id'));
     if($(this).prop('checked')) {
       item.isDone = true;
-      item.finisheddate = Date.now();
+      item.finishdate = Date.now();
     }
     else {
       item.isDone = false;
-      item.finisheddate = null;
+      item.finishdate = null;
     }
     TheNoteList.replaceItem($(this).data('id'), item);
   });
