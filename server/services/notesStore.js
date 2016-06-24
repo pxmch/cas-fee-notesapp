@@ -9,36 +9,39 @@ function publicUpdateNote(content, callback) {
 
   //works
   //db.update({_id: content._id},
-  //console.log("content: "+JSON.stringify(content.body));
-console.log("id: "+JSON.stringify(content.params));
-
-mydoc = null;
+  //console.log("id: "+content.params.id);
+ existing = {}; //was 0 before
   try {
-    publicGet(JSON.stringify(content.params), function(err, note){
-      if (!err && mydoc != null) {
-        mydoc = note;
-        console.log("doc: "+JSON.stringify(mydoc));
-      }else if(err){
-        console.log("err while getting existing doc: "+ err.toString());
-      }else if (mydoc == null){
+    publicGet(content.params.id, function (err, note) {
+      if (!err && note != null) {
+        existing = note;
+        //console.log("doc from DB: " + JSON.stringify(existing));
+      } else if (err) {
+        console.log("err while getting existing doc: " + err.toString());
+      } else if (existing == null || existing == undefined) {
         console.log("couldn't get files");
       }
     });
-    db.update(JSON.stringify(mydoc), JSON.stringify(content.body), {multi: false}, function (err, numReplaced) {
+    //console.log("body: " + JSON.stringify(content.body));
+
+    db.update(JSON.stringify(existing._id), JSON.stringify(content.body), {upsert:true}, function (err, numReplaced, upsert) {
 
         if (callback) {
-      console.log("num of replaced: " + numReplaced);
-      callback(err, numReplaced);
-    }
+          console.log("num of replaced: " + numReplaced);
+          callback(err, numReplaced, upsert);
+        }
+      }
+    );
   }
-);}
-catch (err) {
-  console.log("error in notesStore.js, publicUpdateNote(): : " + err.toString());
-}
+  catch (err) {
+    console.log("error in notesStore.js, publicUpdateNote(): : " + err.toString());
+  }
 }
 
 function publicAddNote(content, callback) {
 
+  //console.log("content in add: "+JSON.stringify(content));
+  //works
   try {
     db.insert(content, function (err, newDoc) {
 
