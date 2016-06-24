@@ -5,32 +5,13 @@
 var Datastore = require('nedb');
 var db = new Datastore({filename: 'server/storage/notes.db', autoload: true});
 
-
-function Note(title, description, priority, duedate, isdone) {
-  this.title = title;
-  this.description = description;
-  this.createdate = new Date().getTime();
-  this.priority = parseInt(priority);
-  this.duedate = (new Date(parseInt(duedate))).getTime();
-  this.isdone = new Boolean(isdone);
-
-}
-
-function noteToString(note) {
-  return 'title: ' + this.title + ", description: " + this.description + ", createdate: "
-    + this.createdate + ", priority: " + this.priority + ", duedate: " + this.duedate + ", isdone:" + this.isdone;
-}
-
-function publicUpdateNote(id, title, description, priority, duedate, isdone, callback) {
+function publicUpdateNote(content, callback) {
 
   try {
     db.update({_id: id},
       {
-        $set: {
-          title: title, description: description, priority: parseInt(priority),
-          duedate: (new Date(parseInt(duedate))).getTime(),
-          isdone: new Boolean(isdone)
-        }
+        $set: JSON.parse(content)
+
       }, {multi: true}, function (err, numReplaced) {
         if (callback) {
           //console.log("num of replaced: " + numReplaced);
@@ -44,21 +25,14 @@ function publicUpdateNote(id, title, description, priority, duedate, isdone, cal
   callback(null, null);
 }
 
-function publicAddNote(title, description, priority, duedate, isdone, callback) {
+function publicAddNote(content, callback) {
 
-  var note = new Note(title, description, priority, duedate, isdone);
-  console.log(noteToString(note));
-  db.insert(note, function (err, newDoc) {
+
+  db.insert(content, function (err, newDoc) {
+
     if (callback) {
-
-      callback(err, newDoc, note.state);
+      callback(err, newDoc);
     }
-  });
-}
-
-function publicRemove(id, callback) {
-  db.update({_id: id}, {$set: {"state": "DELETED"}}, {}, function (err, doc) {
-    publicGet(id, callback);
   });
 }
 
@@ -74,4 +48,4 @@ function publicAll(callback) {
   });
 }
 
-module.exports = {add: publicAddNote, delete: publicRemove, get: publicGet, update: publicUpdateNote, all: publicAll};
+module.exports = {add: publicAddNote, get: publicGet, update: publicUpdateNote, all: publicAll};
