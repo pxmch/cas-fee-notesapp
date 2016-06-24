@@ -178,7 +178,7 @@ $(function() {
     function loadItems() {
       $.get( SERVER+'/all', function( data ) {
         // load from server
-        self.items = data;
+        self.items = JSON.parse(data);
         refreshList();
       }).fail(function(){
         // load from local storage
@@ -206,7 +206,7 @@ $(function() {
     function refreshList() {
       var source = $('#node_item_template').html();
       var template = Handlebars.compile(source);
-      var displayList = { showFinished: self.showFinished, items: self.items}
+      var displayList = { showFinished: self.showFinished, items: self.items};
       $('.note_list').html(template(displayList));
       initDescriptionMoreLinks();
     };
@@ -378,9 +378,10 @@ $(function() {
     }, 200);
   });
 
+  /*
   window.setInterval(function() {
     console.log(TheNoteList.syncState);
   }, 2000);
-
+*/
 
 });
