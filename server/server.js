@@ -27,7 +27,7 @@ app.use(require("method-override")(function(req, res){
 }));
 
 app.use(require('./routes/routes.js'));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('dist'));
 
 const hostname = '127.0.0.1';
 const port = 3001;
