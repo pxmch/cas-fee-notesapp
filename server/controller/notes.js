@@ -34,7 +34,7 @@ module.exports.createNote = function (req, res) {
 
   store.add(req.body, function (err, doc) {
 
-    console.log(JSON.stringify(doc._id));
+    console.log("createNote: "+JSON.stringify(doc._id));
     //-->id ist vorhanden im doc
     try {
       jsonData["_id"] = doc._id;
