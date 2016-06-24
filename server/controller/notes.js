@@ -1,86 +1,66 @@
 var store = require("../services/notesStore.js");
+var RESPONSE_SUCCESS = "OK";
+var RESPONSE_FAIL = "NOK";
 
 module.exports.getNotes = function (req, res) {
 
   store.all(function (err, notes) {
 
-    res.type("application/json");
-
-    res.write("[");
-
-    for (i = 0; i < notes.length; i++) {
-
-      res.write(JSON.stringify(notes[i]));
-
-      if (i + 1 < notes.length) {
-        res.write(",");
-      } else {
-        continue;
-      }
-    }
-
-    res.end("]");
+    var jsonData = notes;
+    res.end(JSON.stringify(jsonData));;
 
   });
 };
 
 module.exports.updateNote = function (req, res) {
 
-  //console.log("duedate: "+req.params.duedate);
+  var jsonData = {};
 
-  res.type("application/json");
+  store.update(req, function (err, numReplaced, upsert) {
 
-  store.update(req, function (err, note) {
-
-      res.write("[{");
-      res.write("\"status\":");
-
-      res.write("\"");
-
-      res.write(err != null ? err.toString() : "SUCCESS");
-      res.write("\"}");
-
-      res.end("]");
-    });
+    if(!err) {
+      jsonData["status"] = RESPONSE_SUCCESS;
+    }else {
+      jsonData["status"] = RESPONSE_FAIL;
+    }
+    res.end(JSON.stringify(jsonData));
+  });
 };
 
-
+//refactored
 module.exports.createNote = function (req, res) {
 
-  //ruft funktion add im notesStorage auf
-  res.type("application/json");
+  var jsonData = {};
 
   store.add(req.body, function (err, doc) {
 
-    //console.log(doc[0]._id);
+    console.log(JSON.stringify(doc._id));
     //-->id ist vorhanden im doc
-    res.write("[{");
-    res.write("\"_id\":");
-
-    res.write("\"");
-    res.write((doc[0] != null && doc[0] != undefined) ? doc[0]._id : "no id");
-    res.write("\",");
-
-    console.log("ceating note: length of doc:"+ doc.length);
-    console.log("ceating note: doc:"+ JSON.stringify(doc));
-
-    res.write("\"status\":");
-
-    res.write("\"");
-    res.write(err != null ? err.toString() : "SUCCESS");
-    res.end("\"}]");
+    try {
+      jsonData["_id"] = doc._id;
+      jsonData["status"] = RESPONSE_SUCCESS;
+    } catch (e) {
+      jsonData["_id"] = "no id";
+      jsonData["status"] = RESPONSE_FAIL;
+    }
+    res.end(JSON.stringify(jsonData));
 
   });
 };
 
+//refactored
 module.exports.showNote = function (req, res) {
 
-  res.type("application/json");
-  //ruft funktion get im notesStorage auf
-  store.get(req.params.id, function (err, note) {
+  var jsonData = {};
 
-    res.write("["+ JSON.stringify(note));
-    res.end("]");
+  store.get(req.params.id, function (err, doc) {
+    try {
+      jsonData = doc;
+      jsonData["status"] = RESPONSE_SUCCESS;
+    } catch (e) {
+      jsonData["status"] = RESPONSE_FAIL;
+    }
+    res.end(JSON.stringify(jsonData));
   });
 };
 
