@@ -93,21 +93,37 @@ $(function() {
 
     const STORAGE_KEY = 'note-items';
     const SERVER = 'http://127.0.0.1:3001';
+    const DATA_STATE_SYNCED = 1;
+    const DATA_STATE_NEEDS_RESYNC = 2;
+    const DATA_STATE_LOCAL_STORAGE = 3;
+    const DATA_STATE_MEMORY_ONLY = 4;
+
 
     var self = this;
     self.items = [];
     self.showFinished = false;
-
-    self.getItems = function(){
-      return self.items;
-    };
+    self.syncState = DATA_STATE_SYNCED;
+    self.resyncQueue = [];
 
     self.getItem = function(index){
       return self.items[index];
     };
 
     self.addItem = function(item) {
+      // save locally
       self.items.push(item);
+      // save to server
+      $.ajax({
+        url: SERVER+'/new',
+        type:'POST',
+        data: '['+JSON.stringify(item)+']',
+        contentType: 'application/json; charset=utf-8',
+        crossDomain: true
+      }).fail(function(){
+          self.syncState = DATA_STATE_NEEDS_RESYNC;
+          self.resyncQueue.push(item);
+          window.console && console.log('server store failed!');
+      });
       storeItems();
     };
 
@@ -120,10 +136,6 @@ $(function() {
       self.items.splice(index, 1);
       storeItems();
     };
-    self.deleteItems = function () {
-      self.items = [];
-      storeItems();
-    }
 
     self.toggleShowFinished = function() {
       self.showFinished = !self.showFinished;
@@ -164,23 +176,22 @@ $(function() {
     }
 
     function loadItems() {
-
       $.get( SERVER+'/all', function( data ) {
+        // load from server
         self.items = data;
         refreshList();
+      }).fail(function(){
+        // load from local storage
+        self.syncState = DATA_STATE_LOCAL_STORAGE;
+        if (!hasStorage()){
+          window.console && console.log('No local storage available!');
+          return;
+        }
+        else if (localStorage.getItem(STORAGE_KEY)) {
+          self.items = JSON.parse(localStorage.getItem(STORAGE_KEY));
+          refreshList();
+        }
       });
-
-      /*
-      if (!hasStorage()){
-        alert('No local storage available.');
-        return;
-      }
-      else if (localStorage.getItem(STORAGE_KEY)) {
-        self.items = JSON.parse(localStorage.getItem(STORAGE_KEY));
-        refreshList();
-      }
-      */
-
     }
 
     function storeItems() {
@@ -366,5 +377,10 @@ $(function() {
       initDescriptionMoreLinks();
     }, 200);
   });
+
+  window.setInterval(function() {
+    console.log(TheNoteList.syncState);
+  }, 2000);
+
 
 });
