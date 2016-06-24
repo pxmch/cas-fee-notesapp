@@ -56,11 +56,12 @@ module.exports.createNote = function (req, res) {
 
   store.add(req.body, function (err, doc) {
 
+    //console.log(doc[0]._id);
+    //-->id ist vorhanden im doc
     res.write("[{");
     res.write("\"_id\":");
 
-    //res.write("\"" + doc._id + "\",");
-    res.write("\"" + "2uoiajfoijoiwnasfklnwio" + "\",");
+    res.write("\"" + doc[0]._id + "\",");
 
     res.write("\"status\":");
 

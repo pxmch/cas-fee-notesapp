@@ -27,25 +27,38 @@ function publicUpdateNote(content, callback) {
 
 function publicAddNote(content, callback) {
 
+  try {
+    db.insert(content, function (err, newDoc) {
 
-  db.insert(content, function (err, newDoc) {
-
-    if (callback) {
-      callback(err, newDoc);
-    }
-  });
+      if (callback) {
+        callback(err, newDoc);
+      }
+    });
+  }catch(err){
+    console.log("error in create: " + err.toString());
+  }
 }
 
 function publicGet(id, callback) {
-  db.findOne({_id: id}, function (err, doc) {
-    callback(err, doc);
-  });
+
+  try {
+    db.findOne({_id: id}, function (err, doc) {
+      callback(err, doc);
+    });
+  }catch(err){
+    console.log("error in gettgin one note: " + err.toString());
+  }
 }
 
 function publicAll(callback) {
-  db.find({}, function (err, docs) {
-    callback(err, docs);
-  });
+
+  try {
+    db.find({}, function (err, docs) {
+      callback(err, docs);
+    });
+  }catch(err){
+    console.log("error in getting all notes")
+  }
 }
 
 module.exports = {add: publicAddNote, get: publicGet, update: publicUpdateNote, all: publicAll};
