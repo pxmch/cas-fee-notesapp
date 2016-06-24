@@ -7,22 +7,24 @@ var db = new Datastore({filename: 'server/storage/notes.db', autoload: true});
 
 function publicUpdateNote(content, callback) {
 
-  //console.log(JSON.stringify(content));
   //works
   //db.update({_id: content._id},
-var mydoc = null;
+  //console.log("content: "+JSON.stringify(content.body));
+console.log("id: "+JSON.stringify(content.params));
+
+mydoc = null;
   try {
-    this.get({_id: content._id}, function(err, note){
-      if (!err && note != null) {
+    publicGet(JSON.stringify(content.params), function(err, note){
+      if (!err && mydoc != null) {
         mydoc = note;
+        console.log("doc: "+JSON.stringify(mydoc));
       }else if(err){
         console.log("err while getting existing doc: "+ err.toString());
-      }else{
+      }else if (mydoc == null){
         console.log("couldn't get files");
       }
     });
-     console.log("doc: "+JSON.stringify(mydoc)+", content: "+JSON.stringify(content));
-    db.update(JSON.stringify(mydoc), JSON.stringify(content), {multi: false}, function (err, numReplaced) {
+    db.update(JSON.stringify(mydoc), JSON.stringify(content.body), {multi: false}, function (err, numReplaced) {
 
         if (callback) {
       console.log("num of replaced: " + numReplaced);
