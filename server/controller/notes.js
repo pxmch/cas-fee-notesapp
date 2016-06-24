@@ -64,6 +64,9 @@ module.exports.createNote = function (req, res) {
     res.write((doc[0] != null && doc[0] != undefined) ? doc[0]._id : "no id");
     res.write("\",");
 
+    console.log("ceating note: length of doc:"+ doc.length);
+    console.log("ceating note: doc:"+ JSON.stringify(doc));
+
     res.write("\"status\":");
 
     res.write("\"");
