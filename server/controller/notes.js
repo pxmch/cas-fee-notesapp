@@ -60,7 +60,9 @@ module.exports.createNote = function (req, res) {
     res.write("[{");
     res.write("\"_id\":");
 
-    res.write("\"" + doc[0]._id + "\",");
+    res.write("\"");
+    res.write((doc[0] != null && doc[0] != undefined) ? doc[0]._id : "no id");
+    res.write("\",");
 
     res.write("\"status\":");
 
