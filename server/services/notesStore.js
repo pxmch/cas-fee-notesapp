@@ -15,8 +15,10 @@ var mydoc = null;
     this.get({_id: content._id}, function(err, note){
       if (!err && note != null) {
         mydoc = note;
-      }else{
+      }else if(err){
         console.log("err while getting existing doc: "+ err.toString());
+      }else{
+        console.log("couldn't get files");
       }
     });
      console.log("doc: "+JSON.stringify(mydoc)+", content: "+JSON.stringify(content));
