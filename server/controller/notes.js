@@ -34,12 +34,11 @@ module.exports.updateNote = function (req, res) {
 
   store.update(req.body, function (err, note) {
 
-      res.write("[");
-      res.write("{");
-
+      res.write("[{");
       res.write("\"status\":");
 
       res.write("\"");
+
       res.write(err != null ? err.toString() : "SUCCESS");
       res.write("\"}");
 

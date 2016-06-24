@@ -7,22 +7,30 @@ var db = new Datastore({filename: 'server/storage/notes.db', autoload: true});
 
 function publicUpdateNote(content, callback) {
 
+  //console.log(JSON.stringify(content));
+  //works
+  //db.update({_id: content._id},
+var mydoc = null;
   try {
-    db.update({_id: id},
-      {
-        $set: JSON.parse(content)
+    this.get({_id: content._id}, function(err, note){
+      if (!err && note != null) {
+        mydoc = note;
+      }else{
+        console.log("err while getting existing doc: "+ err.toString());
+      }
+    });
+     console.log("doc: "+JSON.stringify(mydoc)+", content: "+JSON.stringify(content));
+    db.update(JSON.stringify(mydoc), JSON.stringify(content), {multi: false}, function (err, numReplaced) {
 
-      }, {multi: true}, function (err, numReplaced) {
         if (callback) {
-          //console.log("num of replaced: " + numReplaced);
-          callback(err, numReplaced);
-        }
-      });
-
-  } catch (err) {
-    console.log("error in update: " + err.toString());
+      console.log("num of replaced: " + numReplaced);
+      callback(err, numReplaced);
+    }
   }
-  callback(null, null);
+);}
+catch (err) {
+  console.log("error in notesStore.js, publicUpdateNote(): : " + err.toString());
+}
 }
 
 function publicAddNote(content, callback) {
@@ -34,8 +42,8 @@ function publicAddNote(content, callback) {
         callback(err, newDoc);
       }
     });
-  }catch(err){
-    console.log("error in create: " + err.toString());
+  } catch (err) {
+    console.log("error in notesStore.js, publicAddNote(): : " + err.toString());
   }
 }
 
@@ -45,8 +53,8 @@ function publicGet(id, callback) {
     db.findOne({_id: id}, function (err, doc) {
       callback(err, doc);
     });
-  }catch(err){
-    console.log("error in gettgin one note: " + err.toString());
+  } catch (err) {
+    console.log("error in notesStore.js, publicGet(): " + err.toString());
   }
 }
 
@@ -56,8 +64,8 @@ function publicAll(callback) {
     db.find({}, function (err, docs) {
       callback(err, docs);
     });
-  }catch(err){
-    console.log("error in getting all notes")
+  } catch (err) {
+    console.log("error in notesStore.js, publicAll(): ")
   }
 }
 
