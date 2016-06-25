@@ -1,7 +1,12 @@
 'use strict';
 
+/**
+ * Class NoteList
+ */
+
 function NoteList() {
 
+  const HTML_SELECTOR = '.note_list';
   const STORAGE_KEY = 'note-items';
   const SERVER = 'http://127.0.0.1:3001';
   const DATA_STATE_SYNCED = 1;
@@ -15,6 +20,10 @@ function NoteList() {
   self.syncState = DATA_STATE_SYNCED;
   self.resyncQueue = [];
 
+  self.init = function(){
+    loadItems();
+  };
+
   self.getItem = function(index){
     return self.items[index];
   };
@@ -23,7 +32,7 @@ function NoteList() {
     delete item['_id'];
     // save to server
     $.ajax({
-      url: SERVER+'/new',
+      url: SERVER+'/note',
       type:'POST',
       data: JSON.stringify(item),
       contentType: 'application/json; charset=utf-8',
@@ -51,7 +60,7 @@ function NoteList() {
     self.items.splice(index, 1, item);
     // save to server
     $.ajax({
-      url: SERVER+'/update/'+item._id,
+      url: SERVER+'/note/'+item._id,
       type:'PUT',
       data: JSON.stringify(item),
       contentType: 'application/json; charset=utf-8',
@@ -68,7 +77,7 @@ function NoteList() {
     self.items.splice(index, 1);
     // delete from server
     $.ajax({
-      url: SERVER+'/delete/'+id,
+      url: SERVER+'/note/'+id,
       type:'DELETE',
       contentType: 'application/json; charset=utf-8',
       crossDomain: true
@@ -136,12 +145,7 @@ function NoteList() {
   }
 
   function refreshList() {
-    var source = $('#node_item_template').html();
-    var template = Handlebars.compile(source);
-    var displayList = { showFinished: self.showFinished, items: self.items};
-    $('.note_list').html(template(displayList));
-    initDescriptionMoreLinks();
+    console.log('refresh');
+    $(HTML_SELECTOR).trigger('notelist:refresh', [{showFinished: self.showFinished, items: self.items}]);
   };
-
-  loadItems();
 }

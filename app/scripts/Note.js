@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Class Note
+ */
+
 function Note(title, description, priority, duedate, isDone, _id) {
   var self = this;
   self._id = (typeof _id != 'undefined') ? _id : null;
