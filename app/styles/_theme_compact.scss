@@ -1,6 +1,25 @@
 .theme-compact {
   background-color: #e7e7e7;
 
+  @media all and (max-width: 479px) {
+
+    .note_list {
+      font-family: "Roboto Condensed", sans-serif;
+    }
+
+    .note_item__flag_done {
+      margin-top: 0;
+    }
+
+    .note_item__title {
+      font-size: 1.25rem;
+    }
+
+    .note_item__description {
+      display: none;
+    }
+  }
+
   @media all and (min-width: 480px) {
 
     .note_list {
