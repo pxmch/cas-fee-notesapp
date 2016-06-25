@@ -10,6 +10,11 @@ Team 9, Isa Steiner, Patrick Bonetti
 ## Installation
 Just check out the git repo and run `npm install` in the root directory of the app.
 
+Details:
+* git clone git@github.com:pxmch/cas-fee-notesapp.git
+* cd cas-fee-notesapp
+* npm install
+
 ## Starting the app
 
 Starting the server:
