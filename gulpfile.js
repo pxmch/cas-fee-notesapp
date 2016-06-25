@@ -28,6 +28,7 @@ gulp.task('scripts', () => {
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
     .pipe($.babel())
+    .pipe($.concat('main.js'))
     .pipe($.uglify())
     .pipe($.sourcemaps.write('maps'))
     .pipe(gulp.dest('dist/scripts'))
@@ -50,11 +51,12 @@ gulp.task('lint', () => {
 });
 ;
 
-gulp.task('html', ['styles', 'scripts'], () => {
+gulp.task('html', () => {
   return gulp.src('app/*.html')
     .pipe($.useref({searchPath: ['app', '.']}))
     .pipe($.if('*.css', $.cssnano({safe: true, autoprefixer: false})))
     .pipe($.if('*.html', $.htmlmin({collapseWhitespace: false})))
+    .pipe($.if('*.js', $.uglify()))
     .pipe(gulp.dest('dist'));
 });
 
@@ -150,7 +152,7 @@ gulp.task('wiredep', () => {
 });
 
 // build task - generates dist
-gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
+gulp.task('build', ['styles', 'scripts', 'lint', 'html', 'images', 'fonts', 'extras'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
