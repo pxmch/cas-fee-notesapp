@@ -113,7 +113,7 @@ $(function() {
       delete item['_id'];
       // save to server
       $.ajax({
-        url: SERVER+'/new',
+        url: SERVER+'/note',
         type:'POST',
         data: JSON.stringify(item),
         contentType: 'application/json; charset=utf-8',
@@ -141,7 +141,7 @@ $(function() {
       self.items.splice(index, 1, item);
       // save to server
       $.ajax({
-        url: SERVER+'/update/'+item._id,
+        url: SERVER+'/note/'+item._id,
         type:'PUT',
         data: JSON.stringify(item),
         contentType: 'application/json; charset=utf-8',
@@ -158,7 +158,7 @@ $(function() {
       self.items.splice(index, 1);
       // delete from server
       $.ajax({
-        url: SERVER+'/delete/'+id,
+        url: SERVER+'/note/'+id,
         type:'DELETE',
         contentType: 'application/json; charset=utf-8',
         crossDomain: true
