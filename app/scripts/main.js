@@ -110,30 +110,61 @@ $(function() {
     };
 
     self.addItem = function(item) {
-      // save locally
-      self.items.push(item);
+      delete item['_id'];
       // save to server
       $.ajax({
         url: SERVER+'/new',
         type:'POST',
-        data: '['+JSON.stringify(item)+']',
+        data: JSON.stringify(item),
         contentType: 'application/json; charset=utf-8',
-        crossDomain: true
+        crossDomain: true,
+        success: function( data, status, jqXHR){
+          var d=JSON.parse(data);
+          item._id = d._id;
+          // save locally
+          self.items.push(item);
+          storeItems();
+        }
       }).fail(function(){
           self.syncState = DATA_STATE_NEEDS_RESYNC;
           self.resyncQueue.push(item);
           window.console && console.log('server store failed!');
+          // save locally
+          self.items.push(item);
+          storeItems();
+      });
+
+    };
+
+    self.replaceItem = function(index, item) {
+      // save locally
+      self.items.splice(index, 1, item);
+      // save to server
+      $.ajax({
+        url: SERVER+'/update/'+item._id,
+        type:'PUT',
+        data: JSON.stringify(item),
+        contentType: 'application/json; charset=utf-8',
+        crossDomain: true
+      }).fail(function(){
+        self.syncState = DATA_STATE_NEEDS_RESYNC;
+        self.resyncQueue.push(item);
+        window.console && console.log('server store failed!');
       });
       storeItems();
     };
 
-    self.replaceItem = function(index, item) {
-      self.items.splice(index, 1, item);
-      storeItems();
-    };
-
-    self.deleteItem = function(index) {
+    self.deleteItem = function(index, id) {
       self.items.splice(index, 1);
+      // delete from server
+      $.ajax({
+        url: SERVER+'/delete/'+id,
+        type:'DELETE',
+        contentType: 'application/json; charset=utf-8',
+        crossDomain: true
+      }).fail(function(){
+        window.console && console.log('server delete failed!');
+      });
       storeItems();
     };
 
@@ -181,7 +212,10 @@ $(function() {
         self.items = JSON.parse(data);
         refreshList();
       }).fail(function(){
+        window.console && console.log('loading items failed!');
+
         // load from local storage
+        /*
         self.syncState = DATA_STATE_LOCAL_STORAGE;
         if (!hasStorage()){
           window.console && console.log('No local storage available!');
@@ -190,7 +224,7 @@ $(function() {
         else if (localStorage.getItem(STORAGE_KEY)) {
           self.items = JSON.parse(localStorage.getItem(STORAGE_KEY));
           refreshList();
-        }
+        }*/
       });
     }
 
@@ -214,8 +248,9 @@ $(function() {
     loadItems();
   }
 
-  function Note(title, description, priority, duedate, isDone) {
+  function Note(title, description, priority, duedate, isDone, _id) {
     var self = this;
+    self._id = (typeof _id != 'undefined') ? _id : null;
     self.title = title;
     self.description = description;
     self.priority = (typeof priority != 'undefined' && !isNaN(priority)) ? priority : 0;;
@@ -255,6 +290,8 @@ $(function() {
     var description = $('#edit-description').val();
     var priority = 0;
     var duedate = 0;
+    var _id = $('#edit-id').val();
+    var isDone = ($('#edit-isDone').val() == 'true') ? true : false;
 
     if ($('input[name="edit-priority"]:checked').val()) {
       priority = parseInt($('input[name="edit-priority"]:checked').val());
@@ -263,7 +300,7 @@ $(function() {
       duedate = Date.parse($('#edit-duedate').val())
     }
 
-    var item = new Note(title, description, priority, duedate);
+    var item = new Note(title, description, priority, duedate, isDone, _id);
 
     if($('.edit-dialog').data('mode') == 'edit') {
       var index = $('.edit-dialog').data('index');
@@ -278,7 +315,8 @@ $(function() {
   $('.js-button-delete-item').on('click', function() {
     if(window.confirm('Delete this note?')) {
       var index = $('.edit-dialog').data('index');
-      TheNoteList.deleteItem(index);
+      var _id = $('#edit-id').val();
+      TheNoteList.deleteItem(index, _id);
       toggleEditMask('hide');
     }
   });
@@ -324,6 +362,8 @@ $(function() {
     var index = $(this).data('id');
     var item = TheNoteList.getItem(index);
 
+    $('#edit-id').val(item._id);
+    $('#edit-isDone').val(item.isDone);
     $('#edit-title').val(item.title);
     $('#edit-description').val(item.description);
     $('input[name="edit-priority"][value="'+item.priority+'"]').prop('checked', true);
@@ -377,11 +417,5 @@ $(function() {
       initDescriptionMoreLinks();
     }, 200);
   });
-
-  /*
-  window.setInterval(function() {
-    console.log(TheNoteList.syncState);
-  }, 2000);
-*/
 
 });

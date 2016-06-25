@@ -16,6 +16,7 @@ router.get("/note/:id", notes.showNote);
 
 //query by calling: http://127.0.0.1:3001/id/note/myTitle/myDescription/2/321/true/213
 router.put("/update/:id", notes.updateNote);
-//router.delete("/notes/:id/", notes.deleteNote);
+
+router.delete("/delete/:id", notes.deleteNote);
 
 module.exports = router;

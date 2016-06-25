@@ -34,7 +34,7 @@ module.exports.createNote = function (req, res) {
 
   store.add(req.body, function (err, doc) {
 
-    console.log("createNote: "+JSON.stringify(doc._id));
+    //console.log("createNote: "+JSON.stringify(doc._id));
     //-->id ist vorhanden im doc
     try {
       jsonData["_id"] = doc._id;
@@ -59,6 +59,23 @@ module.exports.showNote = function (req, res) {
       jsonData["status"] = RESPONSE_SUCCESS;
     } catch (e) {
       jsonData["status"] = RESPONSE_FAIL;
+    }
+    res.end(JSON.stringify(jsonData));
+  });
+};
+
+//refactored
+module.exports.deleteNote = function (req, res) {
+
+  var jsonData = {};
+
+  store.delete(req.params.id, function (err, numRemoved) {
+    if(!err) {
+      jsonData["status"] = RESPONSE_SUCCESS;
+      console.log("Document "+req.params.id+" deleted");
+    } else {
+      jsonData["status"] = RESPONSE_FAIL;
+      console.log("Delete of "+req.params.id+" failed!");
     }
     res.end(JSON.stringify(jsonData));
   });

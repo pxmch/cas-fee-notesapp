@@ -121,6 +121,22 @@ gulp.task('serve', ['styles', 'scripts', 'fonts'], () => {
   gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
 
+
+gulp.task('watch', () => {
+
+  gulp.watch([
+    'app/*.html',
+    'app/images/**/*',
+    '.tmp/fonts/**/*'
+  ]).on('change', reload);
+
+  gulp.watch('app/styles/**/*.scss', ['styles']);
+  gulp.watch('app/scripts/**/*.js', ['scripts']);
+  gulp.watch('app/fonts/**/*', ['fonts']);
+  gulp.watch('bower.json', ['wiredep', 'fonts']);
+
+});
+
 gulp.task('serve:dist', () => {
   browserSync({
     notify: false,

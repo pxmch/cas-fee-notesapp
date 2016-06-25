@@ -21,17 +21,16 @@ function publicUpdateNote(content, callback) {
       } else if (existing == null || existing == undefined) {
         console.log("couldn't get files");
       }
-    });
-    //console.log("body: " + JSON.stringify(content.body));
 
-    db.update(JSON.stringify(existing._id), JSON.stringify(content.body), {upsert:true}, function (err, numReplaced, upsert) {
+      db.update({ _id: content.params.id}, content.body, {upsert:true}, function (err, numReplaced, upsert) {
 
-        if (callback) {
-          console.log("num of replaced: " + numReplaced);
-          callback(err, numReplaced, upsert);
+          if (callback) {
+            console.log("num of replaced: " + numReplaced);
+            callback(err, numReplaced, upsert);
+          }
         }
-      }
-    );
+      );
+    });
   }
   catch (err) {
     console.log("error in notesStore.js, publicUpdateNote(): : " + err.toString());
@@ -65,6 +64,17 @@ function publicGet(id, callback) {
   }
 }
 
+function publicDelete(id, callback) {
+
+  try {
+    db.remove({_id: id}, {}, function (err, noRemoved) {
+      callback(err, noRemoved);
+    });
+  } catch (err) {
+    console.log("error in notesStore.js, publicDelete(): " + err.toString());
+  }
+}
+
 function publicAll(callback) {
 
   try {
@@ -76,4 +86,4 @@ function publicAll(callback) {
   }
 }
 
-module.exports = {add: publicAddNote, get: publicGet, update: publicUpdateNote, all: publicAll};
+module.exports = {add: publicAddNote, get: publicGet, update: publicUpdateNote, delete: publicDelete, all: publicAll};
