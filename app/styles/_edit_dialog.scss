@@ -26,7 +26,7 @@
 
 .edit-dialog-backdrop {
   opacity: 0;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
@@ -96,7 +96,6 @@
       border-bottom: 2px solid $color-600;
       outline: none;
     }
-
   }
 
   textarea {
@@ -184,4 +183,31 @@
   &:hover {
     opacity: 0.6;
   }
+}
+
+@media all and (max-width: 479px) {
+  .edit-dialog {
+    width: 94vw;
+    height: 94vh;
+    margin-left: -47vw;
+    margin-top: -47vh;
+  }
+
+  .edit-mask {
+    fieldset {
+      padding: 0.75rem;
+      margin: 0 0 0.5rem;
+      border: none;
+    }
+
+    .field-date {
+      display: block;
+      width: 12rem;
+    }
+
+    .btn-quick-date {
+      margin-top: 0.5rem;
+    }
+  }
+
 }
