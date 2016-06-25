@@ -21,7 +21,7 @@ Starting the server:
 Run `npm start` within the directoriy of the app. The server will listen on http://localhost:3001.
 
 Starting the app:
-To start the client, open http://localhost:3001/index.html in a webbrowser
+To start the client, open http://localhost:3001/index.html in a web browser
 
 ## Development
 Running `gulp build` generates a `/dist` folder with the frontend client. This is the directory from where the server serves the client.
