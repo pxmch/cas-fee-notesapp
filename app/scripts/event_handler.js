@@ -86,11 +86,11 @@ $('.note_list').on('click', '.js-button-edit-item',  function () {
   var finishdate = (finishdate_tmp != '' && finishdate_tmp != 0) ? finishdate_tmp : 0;
   item.finishdate = finishdate;
 
-  $('#edit-finishdate').val(getFormattedDate(new Date(item.finishdate)));
+  $('#edit-finishdate').val(getFormattedDate(new Date(item.finishdate)), false);
 
 
   if(item.duedate !== 0) {
-    $('#edit-duedate').val(getFormattedDate(new Date(item.duedate)));
+    $('#edit-duedate').val(getFormattedDate(new Date(item.duedate)), false);
   }
 
   $('#edit-menu-title').text('Edit note');

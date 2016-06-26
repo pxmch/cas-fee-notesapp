@@ -5,7 +5,8 @@
     "jquery": "~2.1.1",
     "normalize-css": "~4.1.1",
     "font-awesome": "^4.6.3",
-    "handlebars": "~4.0.5"
+    "handlebars": "~4.0.5",
+    "moment": "^2.13.0"
   },
   "devDependencies": {
     "jasmine-core": "jasmine#~2.4.1"

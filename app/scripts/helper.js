@@ -4,46 +4,62 @@
  * helper
  */
 
-Handlebars.registerHelper('formattedDate', function(data) {
+Handlebars.registerHelper('formattedDate', function (data) {
 
   //console.log('date in registeredHelper '+ data.toString());
-  if(data === 0) {
+  if (data === 0) {
     return '';
   }
   var date = new Date(data);
-  return getFormattedDate(date);
+  return getFormattedDate(date, true);
 });
 
-function getFormattedDate(date){
+function getFormattedDate(date, isDisplayed) {
 
   var d = date;
   var month = (d.getMonth() + 1);
   var day = d.getDate();
 
-  if(month < 10) {
+  if (month < 10) {
     month = '0' + month;
   }
-  if(day < 10) {
+  if (day < 10) {
     day = '0' + day;
   }
-  return d.getFullYear() + '-' + month + '-' + day;
+  moment.locale('en', {
+    calendar : {
+      lastDay : '[Yesterday]',
+      sameDay : '[Today]',
+      nextDay : '[Tomorrow]',
+      lastWeek : '[last] dddd',
+      nextWeek : 'dddd',
+      sameElse : 'L'
+    }
+  });
+
+  if (isDisplayed) {
+    return moment('' + d.getFullYear() + month + day, 'YYYYMMDD').calendar();
+  } else {
+    return d.getFullYear() + '-' + month + '-' + day;
+  }
+
 }
 
-function getToday(){
-  return getFormattedDate(new Date(Date.now()));
+function getToday() {
+  return getFormattedDate(new Date(Date.now()), false);
 }
 
-function getTomorrow(){
-  return getFormattedDate(new Date(Date.now()+24*60*60*1000));
+function getTomorrow() {
+  return getFormattedDate(new Date(Date.now() + 24 * 60 * 60 * 1000), false);
 }
 
-function setCookie (name, value, expiry){
+function setCookie(name, value, expiry) {
   document.cookie = name + '=' + encodeURIComponent(value) +
     '; max-age=' + 60 * 60 * 24 * expiry +
     '; path=/';
 }
 
-function getCookie (name){
+function getCookie(name) {
   var cookies = document.cookie;
   if (cookies && cookies.length != 0) {
     var val = cookies.match('(^|;)[\s]*' + name + '=([^;]*)');
@@ -51,14 +67,14 @@ function getCookie (name){
       return decodeURIComponent(val[2]);
     }
   }
-  return '' ;
+  return '';
 }
 
-function toggleEditMask(state){
-  if(state == 'show') {
+function toggleEditMask(state) {
+  if (state == 'show') {
     $('.edit-dialog-backdrop').addClass('active');
     $('.edit-dialog').addClass('active');
-    if($('.edit-dialog').data('mode') === 'add') {
+    if ($('.edit-dialog').data('mode') === 'add') {
       $('.edit-mask-delete-button').hide();
     }
   }
@@ -70,7 +86,7 @@ function toggleEditMask(state){
   }
 }
 
-function updateSortIndicators($current, order){
+function updateSortIndicators($current, order) {
   $('.js-sort-indicator').removeClass('fa-sort fa-sort-asc fa-sort-desc').parent().removeClass('active');
-  $current.find('.js-sort-indicator').addClass('fa-sort-'+order).parent().addClass('active');
+  $current.find('.js-sort-indicator').addClass('fa-sort-' + order).parent().addClass('active');
 }
