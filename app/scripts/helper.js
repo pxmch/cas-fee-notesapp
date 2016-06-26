@@ -33,7 +33,7 @@ function getFormattedDate(date, isDisplayed) {
       nextDay : '[Tomorrow]',
       lastWeek : '[last] dddd',
       nextWeek : 'dddd',
-      sameElse : 'L'
+      sameElse : 'DD.MM.YYYY'
     }
   });
 
