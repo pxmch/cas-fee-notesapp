@@ -22,7 +22,7 @@ Details:
 ## Starting the app
 
 Starting the server:
-Run `npm start` within the directoriy of the app. The server will listen on http://localhost:3001.
+Run `npm start` within the directory of the app. The server will listen on http://localhost:3001.
 
 Starting the app:
 To start the client, open http://localhost:3001/index.html in a web browser
@@ -48,4 +48,4 @@ Other used components in alphabetical order:
 - [Moment.js](http://momentjs.com/)
 - [Normalize.css](https://necolas.github.io/normalize.css/)
 
-The initial setup of this app was based on a boilerplate generated with [Yeoman Web App Generator](https://github.com/yeoman/generator-webapp#readme)
+The initial setup of this app is based on a boilerplate generated with [Yeoman Web App Generator](https://github.com/yeoman/generator-webapp#readme)
