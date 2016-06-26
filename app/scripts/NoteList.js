@@ -145,7 +145,6 @@ function NoteList() {
   }
 
   function refreshList() {
-    console.log('refresh');
     $(HTML_SELECTOR).trigger('notelist:refresh', [{showFinished: self.showFinished, items: self.items}]);
   };
 }
