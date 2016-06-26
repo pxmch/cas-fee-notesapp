@@ -146,7 +146,11 @@ $('.js-btn-item-save').on('click', function() {
   var duedate = 0;
   var finishdate = $('#edit-finishdate').val();
   var _id = $('#edit-id').val();
-  var isDone = ($('#edit-isDone').val() == 'true') ? true : false;
+  var isDone = false;
+
+  if($('.edit-dialog').data('mode') == 'edit') {
+    isDone = ($('#edit-isDone').val() == 'true') ? true : false;
+  }
 
   if ($('input[name="edit-priority"]:checked').val()) {
     priority = parseInt($('input[name="edit-priority"]:checked').val());
