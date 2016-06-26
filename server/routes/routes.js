@@ -6,15 +6,12 @@ var express = require('express');
 var router = express.Router();
 var notes = require('../controller/notes.js');
 
-//query by calling: http://127.0.0.1:3001/notes
-router.get("/all", notes.getNotes);
+router.get("/all", notes.getAllNotes);
 
-router.post("/note", notes.createNote);
+router.post("/note", notes.addNote);
 
-//query by calling: http://127.0.0.1:3001/note/ (add some existing id see ../storage/notes.db)
-router.get("/note/:id", notes.showNote);
+router.get("/note/:id", notes.getNote);
 
-//query by calling: http://127.0.0.1:3001/id/note/myTitle/myDescription/2/321/true/213
 router.put("/note/:id", notes.updateNote);
 
 router.delete("/delete/:id", notes.deleteNote);
