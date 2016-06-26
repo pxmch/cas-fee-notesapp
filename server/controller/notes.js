@@ -74,5 +74,3 @@ module.exports.deleteNote = function (req, res) {
     res.end(JSON.stringify(jsonData));
   });
 };
-
-

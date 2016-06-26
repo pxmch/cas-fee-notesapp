@@ -45,7 +45,7 @@ function getNote(id, callback) {
 
 function updateNote(content, callback) {
 
- existing = {};
+  existing = {};
   try {
     getNote(content.params.id, function (err, note) {
       if (!err && note != null) {
@@ -60,7 +60,7 @@ function updateNote(content, callback) {
       db.update({ _id: content.params.id}, content.body, {upsert:true}, function (err, numReplaced, upsert) {
 
           if (callback) {
-            console.log("num of replaced: " + numReplaced);
+
             callback(err, numReplaced, upsert);
           }
         }
