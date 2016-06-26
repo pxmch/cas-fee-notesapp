@@ -177,4 +177,8 @@ $('.js-btn-duedate-tomorrow').on('click', function() {
   $('#edit-duedate').val(getTomorrow());
 });
 
+// reset prio button
+$('.js-btn-reset-prio').on('click', function() {
+  $('.edit-priority').attr('checked', false);
+});
 
