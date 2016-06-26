@@ -30,6 +30,7 @@ To start the client, open http://localhost:3001/index.html in a web browser
 ## Remarks
 * This app has only been tested on the latest versions of Chrome, Safari and Firefox on Mac
 * Both themes of the client are responsive and work on different screen sizes
+* The note edit mask has no mandatory fields on purpose - i.e. a note does not need a priority or a due date.
 
 ## Development
 Running `gulp build` generates a `/dist` folder with the frontend client. This is the directory from where the server serves the client.
