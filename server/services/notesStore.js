@@ -60,7 +60,7 @@ function updateNote(content, callback) {
       db.update({ _id: content.params.id}, content.body, {upsert:true}, function (err, numReplaced, upsert) {
 
           if (callback) {
-            
+
             callback(err, numReplaced, upsert);
           }
         }
