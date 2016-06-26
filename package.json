@@ -37,7 +37,7 @@
     "wiredep": "^2.2.2"
   },
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "bower install && gulp",
     "start": "node server/server.js"
   },
   "eslintConfig": {
