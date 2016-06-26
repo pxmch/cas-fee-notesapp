@@ -81,6 +81,14 @@ $('.note_list').on('click', '.js-button-edit-item',  function () {
   $('#edit-description').val(item.description);
   $('input[name="edit-priority"][value="'+item.priority+'"]').prop('checked', true);
 
+
+  var finishdate_tmp = item.finishdate;
+  var finishdate = (finishdate_tmp != '' && finishdate_tmp != 0) ? finishdate_tmp : 0;
+  item.finishdate = finishdate;
+
+  $('#edit-finishdate').val(getFormattedDate(new Date(item.finishdate)));
+
+
   if(item.duedate !== 0) {
     $('#edit-duedate').val(getFormattedDate(new Date(item.duedate)));
   }
@@ -99,7 +107,7 @@ $('.note_list').on('click', '.js-item-flag-done', function() {
   }
   else {
     item.isDone = false;
-    item.finishdate = null;
+    item.finishdate = 0;
   }
   TheNoteList.replaceItem($(this).data('id'), item);
 });
@@ -136,6 +144,7 @@ $('.js-btn-item-save').on('click', function() {
   var description = $('#edit-description').val();
   var priority = 0;
   var duedate = 0;
+  var finishdate = $('#edit-finishdate').val();
   var _id = $('#edit-id').val();
   var isDone = ($('#edit-isDone').val() == 'true') ? true : false;
 
@@ -146,7 +155,8 @@ $('.js-btn-item-save').on('click', function() {
     duedate = Date.parse($('#edit-duedate').val())
   }
 
-  var item = new Note(title, description, priority, duedate, isDone, _id);
+
+  var item = new Note(title, description, priority, duedate, isDone, finishdate, _id);
 
   if($('.edit-dialog').data('mode') == 'edit') {
     var index = $('.edit-dialog').data('index');

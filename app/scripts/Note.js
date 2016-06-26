@@ -4,7 +4,7 @@
  * Class Note
  */
 
-function Note(title, description, priority, duedate, isDone, _id) {
+function Note(title, description, priority, duedate, isDone, finishdate, _id) {
   var self = this;
   self._id = (typeof _id != 'undefined') ? _id : null;
   self.title = title;
@@ -13,5 +13,5 @@ function Note(title, description, priority, duedate, isDone, _id) {
   self.duedate = (typeof duedate != 'undefined' && !isNaN(duedate)) ? duedate : 0;
   self.isDone = (typeof isDone != 'undefined') ? isDone : false;
   self.createdate = Date.now();
-  self.finishdate = 0;
+  self.finishdate = finishdate;
 }

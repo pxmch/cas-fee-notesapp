@@ -5,6 +5,8 @@
  */
 
 Handlebars.registerHelper('formattedDate', function(data) {
+
+  //console.log('date in registeredHelper '+ data.toString());
   if(data === 0) {
     return '';
   }
@@ -13,6 +15,7 @@ Handlebars.registerHelper('formattedDate', function(data) {
 });
 
 function getFormattedDate(date){
+
   var d = date;
   var month = (d.getMonth() + 1);
   var day = d.getDate();
