@@ -8,6 +8,9 @@ Team 9, Isa Steiner, Patrick Bonetti
 
 
 ## Installation
+
+_Prerequisite: [Node.js](https://nodejs.org) must be installed._
+
 Just check out the git repo and run `npm install` in the root directory of the app.
 
 Details:
@@ -15,13 +18,11 @@ Details:
 * cd cas-fee-notesapp
 * npm install
 
+
 ## Starting the app
 
-Prerequisites:
-[Node.js](https://nodejs.org) must be installed.
-
 Starting the server:
-Run `npm start` within the directoriy of the app. The server will listen on http://localhost:3001.
+Run `npm start` within the directory of the app. The server will listen on http://localhost:3001.
 
 Starting the app:
 To start the client, open http://localhost:3001/index.html in a web browser
@@ -47,4 +48,4 @@ Other used components in alphabetical order:
 - [Moment.js](http://momentjs.com/)
 - [Normalize.css](https://necolas.github.io/normalize.css/)
 
-The initial setup of this app was based on a boilerplate generated with [Yeoman Web App Generator](https://github.com/yeoman/generator-webapp#readme)
+The initial setup of this app is based on a boilerplate generated with [Yeoman Web App Generator](https://github.com/yeoman/generator-webapp#readme)
