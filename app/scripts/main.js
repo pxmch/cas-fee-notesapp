@@ -1,7 +1,7 @@
 'use strict';
 
-const THEME_COOKIE_NAME = 'theme';
-const THEME_CLASS_NAME  = 'theme-compact';
+var THEME_COOKIE_NAME = 'theme';
+var THEME_CLASS_NAME  = 'theme-compact';
 
 var resizeTimer;
 
