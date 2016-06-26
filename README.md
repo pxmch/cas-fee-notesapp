@@ -8,6 +8,9 @@ Team 9, Isa Steiner, Patrick Bonetti
 
 
 ## Installation
+
+_Prerequisite: [Node.js](https://nodejs.org) must be installed._
+
 Just check out the git repo and run `npm install` in the root directory of the app.
 
 Details:
@@ -15,10 +18,8 @@ Details:
 * cd cas-fee-notesapp
 * npm install
 
-## Starting the app
 
-Prerequisites:
-[Node.js](https://nodejs.org) must be installed.
+## Starting the app
 
 Starting the server:
 Run `npm start` within the directoriy of the app. The server will listen on http://localhost:3001.
