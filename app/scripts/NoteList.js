@@ -6,13 +6,13 @@
 
 function NoteList() {
 
-  const HTML_SELECTOR = '.note_list';
-  const STORAGE_KEY = 'note-items';
-  const SERVER = 'http://127.0.0.1:3001';
-  const DATA_STATE_SYNCED = 1;
-  const DATA_STATE_NEEDS_RESYNC = 2;
-  const DATA_STATE_LOCAL_STORAGE = 3;
-  const DATA_STATE_MEMORY_ONLY = 4;
+  var HTML_SELECTOR = '.note_list';
+  var STORAGE_KEY = 'note-items';
+  var SERVER = 'http://127.0.0.1:3001';
+  var DATA_STATE_SYNCED = 1;
+  var DATA_STATE_NEEDS_RESYNC = 2;
+  var DATA_STATE_LOCAL_STORAGE = 3;
+  var DATA_STATE_MEMORY_ONLY = 4;
 
   var self = this;
   self.items = [];
